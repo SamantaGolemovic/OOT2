@@ -45,6 +45,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
         btnTipSobe = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sammy app");
 
         jLabel1.setText("Glavni izbornik");
 
@@ -145,6 +146,9 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
                 .addComponent(btnPregledRezervacija)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("Sammyna app");
+        getAccessibleContext().setAccessibleDescription("samyy app");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

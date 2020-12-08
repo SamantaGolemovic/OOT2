@@ -65,8 +65,6 @@ public class ZaposleniciView extends javax.swing.JDialog {
 
         jLabel1.setText("Unos novog zaposlenika");
 
-        txtNovaLozinka.setText("jTextField3");
-
         jLabel2.setText("Ime zaposlenika:");
 
         jLabel11.setText("Ažuriranje zaposlenika");

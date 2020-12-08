@@ -5,18 +5,25 @@
  */
 package View;
 
+import Controller.ControllAdmin;
+import Model.Gost;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author veron
  */
 public class PrijavaGostaView extends javax.swing.JDialog {
 
+    Gost gost;
+    
     /**
      * Creates new form PrijavaGostaView
      */
     public PrijavaGostaView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**
@@ -48,6 +55,11 @@ public class PrijavaGostaView extends javax.swing.JDialog {
         btnOdustani.setText("Odustani");
 
         btnPrijava.setText("Prijava");
+        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrijavaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Prijava novog gosta");
 
@@ -124,6 +136,24 @@ public class PrijavaGostaView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
+        String ime=txtImeGosta.getText();
+        String prezime =txtPrezimeGosta.getText();
+        String brMoba = txtBrMobitela.getText();
+        int OIB = Integer.parseInt(txtOIB.getText().trim());
+        
+        Gost gost= new Gost();
+        gost.setIme_gosta(ime);
+        gost.setPrezime_gosta(prezime);
+        gost.setBr_mobitela(brMoba);
+        gost.setOib_gosta(OIB);
+        
+        String potvrda = controll.spremiGosta(gost);
+        JOptionPane.showMessageDialog(this, potvrda);
+        
+        
+    }//GEN-LAST:event_btnPrijavaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -180,4 +210,6 @@ public class PrijavaGostaView extends javax.swing.JDialog {
     private javax.swing.JTextField txtOIB;
     private javax.swing.JTextField txtPrezimeGosta;
     // End of variables declaration//GEN-END:variables
+
+    ControllAdmin controll = new ControllAdmin();
 }

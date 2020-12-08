@@ -39,7 +39,6 @@ public class SobeView extends javax.swing.JDialog {
         txtBrojSobe = new javax.swing.JTextField();
         cmbNoviTipSobe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        btnTipoviSobe = new javax.swing.JButton();
         txtCijenaSobe = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cmbTipSobe = new javax.swing.JComboBox<>();
@@ -69,13 +68,6 @@ public class SobeView extends javax.swing.JDialog {
         jLabel2.setText("Broj sobe:");
 
         jLabel3.setText("Cijena noćenja:");
-
-        btnTipoviSobe.setText("Tipovi sobe");
-        btnTipoviSobe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTipoviSobeActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Tip sobe:");
 
@@ -171,9 +163,7 @@ public class SobeView extends javax.swing.JDialog {
                         .addContainerGap(46, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTipoviSobe)
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 428, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(251, 251, 251)
                 .addComponent(btnOdustaniSoba)
@@ -182,10 +172,8 @@ public class SobeView extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnTipoviSobe))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -229,11 +217,6 @@ public class SobeView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTipoviSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipoviSobeActionPerformed
-        //TipSobeView tipSobeView = new TipSobeView(this,true);
-        
-    }//GEN-LAST:event_btnTipoviSobeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,7 +264,6 @@ public class SobeView extends javax.swing.JDialog {
     private javax.swing.JButton btnAzurirajSobu;
     private javax.swing.JButton btnOdustaniSoba;
     private javax.swing.JButton btnSPremiSobu;
-    private javax.swing.JButton btnTipoviSobe;
     private javax.swing.JTextField cmbNoviTipSobe;
     private javax.swing.JComboBox<String> cmbTipSobe;
     private javax.swing.JCheckBox jCheckBox1;
