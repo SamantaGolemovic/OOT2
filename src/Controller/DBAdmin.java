@@ -71,7 +71,7 @@ public class DBAdmin {
             stmt.setString(2, gost.getIme_gosta());
             stmt.setString(3, gost.getPrezime_gosta());
             stmt.setString(4, gost.getBr_mobitela());
-            stmt.setInt(5, gost.getOib_gosta());
+            stmt.setString(5, gost.getOib_gosta());
             
             stmt.execute();
             conn.close();

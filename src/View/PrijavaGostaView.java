@@ -140,7 +140,7 @@ public class PrijavaGostaView extends javax.swing.JDialog {
         String ime=txtImeGosta.getText();
         String prezime =txtPrezimeGosta.getText();
         String brMoba = txtBrMobitela.getText();
-        int OIB = Integer.parseInt(txtOIB.getText().trim());
+        String OIB = txtOIB.getText();
         
         Gost gost= new Gost();
         gost.setIme_gosta(ime);

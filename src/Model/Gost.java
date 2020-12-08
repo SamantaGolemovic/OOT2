@@ -14,7 +14,7 @@ public class Gost {
     private String ime_gosta;
     private String prezime_gosta;
     private String br_mobitela;
-    private int oib_gosta;
+    private String oib_gosta;
 
     public int getSifra_gosta() {
         return sifra_gosta;
@@ -48,13 +48,15 @@ public class Gost {
         this.br_mobitela = br_mobitela;
     }
 
-    public int getOib_gosta() {
+    public String getOib_gosta() {
         return oib_gosta;
     }
 
-    public void setOib_gosta(int oib_gosta) {
+    public void setOib_gosta(String oib_gosta) {
         this.oib_gosta = oib_gosta;
     }
+
+   
   
     
 }
