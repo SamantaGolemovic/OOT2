@@ -11,7 +11,7 @@ package Model;
  */
 public class Soba {
     public int sifra_sobe;
-    public String opis_sobe;
+    public String broj_sobe;
     public double cijena;
     public Tip_sobe sifra_tipa;
     public boolean rezervirana;
@@ -27,11 +27,11 @@ public class Soba {
     }
 
     public String getOpis_sobe() {
-        return opis_sobe;
+        return broj_sobe;
     }
 
     public void setOpis_sobe(String opis_sobe) {
-        this.opis_sobe = opis_sobe;
+        this.broj_sobe = opis_sobe;
     }
 
     public double getCijena() {

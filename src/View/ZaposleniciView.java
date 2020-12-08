@@ -9,12 +9,13 @@ package View;
  *
  * @author veron
  */
-public class Zaposlenici extends javax.swing.JFrame {
+public class ZaposleniciView extends javax.swing.JDialog {
 
     /**
-     * Creates new form UnosKroisnika
+     * Creates new form ZaposleniciView
      */
-    public Zaposlenici() {
+    public ZaposleniciView(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -27,42 +28,56 @@ public class Zaposlenici extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
+        btnOdustaniZap = new javax.swing.JButton();
+        txtNovoKorisnickoIme = new javax.swing.JTextField();
+        btnAzurirajZaposlenika = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txtImeZap = new javax.swing.JTextField();
+        txtNovaLozinka = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        txtPrezimeZap = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txtKorisnickoIme = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        txtLozinka = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblZaposlenici = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        btnSpremiZaposlenika = new javax.swing.JButton();
-        btnOdustaniZap = new javax.swing.JButton();
-        btnAzurirajZaposlenika = new javax.swing.JButton();
-        txtImeZap = new javax.swing.JTextField();
-        txtPrezimeZap = new javax.swing.JTextField();
-        txtKorisnickoIme = new javax.swing.JTextField();
-        txtLozinka = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         txtNovoIme = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         txtNovoPrezimeZap = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtNovoKorisnickoIme = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtNovaLozinka = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        btnSpremiZaposlenika = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel9.setText("Novo korisničko ime:");
+
+        btnOdustaniZap.setText("Odustani");
+
+        btnAzurirajZaposlenika.setText("Ažuriraj");
+
+        jLabel10.setText("Nova lozinka:");
 
         jLabel1.setText("Unos novog zaposlenika");
 
+        txtNovaLozinka.setText("jTextField3");
+
         jLabel2.setText("Ime zaposlenika:");
+
+        jLabel11.setText("Ažuriranje zaposlenika");
 
         jLabel3.setText("Prezime zaposlenika:");
 
         jLabel4.setText("Korisničko ime:");
 
         jLabel5.setText("Lozinka:");
+
+        jLabel7.setText("Novo ime zaposlenika:");
 
         tblZaposlenici.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,25 +92,11 @@ public class Zaposlenici extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblZaposlenici);
 
+        jLabel8.setText("Novo prezime zaposlenika:");
+
         jLabel6.setText("Popis svih zaposlenika:");
 
         btnSpremiZaposlenika.setText("Spremi");
-
-        btnOdustaniZap.setText("Odustani");
-
-        btnAzurirajZaposlenika.setText("Ažuriraj");
-
-        jLabel7.setText("Novo ime zaposlenika:");
-
-        jLabel8.setText("Novo prezime zaposlenika:");
-
-        jLabel9.setText("Novo korisničko ime:");
-
-        jLabel10.setText("Nova lozinka:");
-
-        txtNovaLozinka.setText("jTextField3");
-
-        jLabel11.setText("Ažuriranje zaposlenika");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +155,7 @@ public class Zaposlenici extends javax.swing.JFrame {
                                         .addComponent(jLabel6)
                                         .addGap(330, 330, 330))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -188,7 +189,7 @@ public class Zaposlenici extends javax.swing.JFrame {
                     .addComponent(txtLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSpremiZaposlenika)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,23 +238,27 @@ public class Zaposlenici extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Zaposlenici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ZaposleniciView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Zaposlenici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ZaposleniciView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Zaposlenici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ZaposleniciView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Zaposlenici.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ZaposleniciView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Zaposlenici().setVisible(true);
+                ZaposleniciView dialog = new ZaposleniciView(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

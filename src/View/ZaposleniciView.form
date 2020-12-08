@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtImeZap" max="32767" attributes="0"/>
@@ -63,10 +63,10 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtNovoKorisnickoIme" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="txtLozinka" min="-2" pref="202" max="-2" attributes="0"/>
@@ -93,9 +93,9 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="87" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
@@ -137,7 +137,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnSpremiZaposlenika" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="142" max="-2" attributes="0"/>
@@ -173,9 +173,38 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo korisni&#x10d;ko ime:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnOdustaniZap">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Odustani"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNovoKorisnickoIme">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAzurirajZaposlenika">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#x17e;uriraj"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nova lozinka:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Unos novog zaposlenika"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtImeZap">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNovaLozinka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField3"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -183,19 +212,35 @@
         <Property name="text" type="java.lang.String" value="Ime zaposlenika:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="txtPrezimeZap">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#x17e;uriranje zaposlenika"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Prezime zaposlenika:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtKorisnickoIme">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Korisni&#x10d;ko ime:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="txtLozinka">
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lozinka:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo ime zaposlenika:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -216,39 +261,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Popis svih zaposlenika:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSpremiZaposlenika">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Spremi"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnOdustaniZap">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Odustani"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAzurirajZaposlenika">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="A&#x17e;uriraj"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtImeZap">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtPrezimeZap">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtKorisnickoIme">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtLozinka">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novo ime zaposlenika:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtNovoIme">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
@@ -256,28 +268,16 @@
         <Property name="text" type="java.lang.String" value="Novo prezime zaposlenika:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Popis svih zaposlenika:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JTextField" name="txtNovoPrezimeZap">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JButton" name="btnSpremiZaposlenika">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Novo korisni&#x10d;ko ime:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNovoKorisnickoIme">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel10">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nova lozinka:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNovaLozinka">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="A&#x17e;uriranje zaposlenika"/>
+        <Property name="text" type="java.lang.String" value="Spremi"/>
       </Properties>
     </Component>
   </SubComponents>

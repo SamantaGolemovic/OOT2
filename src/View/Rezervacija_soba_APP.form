@@ -23,26 +23,32 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+              <Component id="btnPregledRezervacija" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="bltPrijavaGosta" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnUnosZaposlenika" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnPregledGostiju" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnZaposlenici" max="32767" attributes="0"/>
+                          <Component id="bltPrijavaGosta" pref="143" max="32767" attributes="0"/>
+                          <Component id="btnTipSobe" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnRezervacija" max="32767" attributes="0"/>
-                  <Component id="btnUnosNoveSobe" max="32767" attributes="0"/>
-                  <Component id="btnPregledRezervacija" max="32767" attributes="0"/>
+                  <Component id="btnPregledGostiju" max="32767" attributes="0"/>
+                  <Component id="btnRezervacija" pref="143" max="32767" attributes="0"/>
+                  <Component id="btnSobe" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
           </Group>
@@ -55,20 +61,22 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="bltPrijavaGosta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRezervacija" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bltPrijavaGosta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnUnosZaposlenika" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnUnosNoveSobe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSobe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTipSobe" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnZaposlenici" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnPregledGostiju" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnPregledRezervacija" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="117" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+              <Component id="btnPregledRezervacija" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,29 +99,49 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Rezervacija"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRezervacijaActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnUnosZaposlenika">
+    <Component class="javax.swing.JButton" name="btnZaposlenici">
       <Properties>
         <Property name="text" type="java.lang.String" value="Zaposlenici"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUnosZaposlenikaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnZaposleniciActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnUnosNoveSobe">
+    <Component class="javax.swing.JButton" name="btnSobe">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sobe"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSobeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPregledGostiju">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pregled gostiju"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPregledGostijuActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPregledRezervacija">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pregled rezervacija"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPregledRezervacijaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTipSobe">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tip soba"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTipSobeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

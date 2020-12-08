@@ -9,12 +9,13 @@ package View;
  *
  * @author veron
  */
-public class Rezervacija extends javax.swing.JFrame {
+public class RezervacijaView extends javax.swing.JDialog {
 
     /**
-     * Creates new form Rezervacija
+     * Creates new form RezervacijaView
      */
-    public Rezervacija() {
+    public RezervacijaView(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -27,52 +28,32 @@ public class Rezervacija extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtTraziOIB = new javax.swing.JTextField();
-        btnTraziOIB = new javax.swing.JButton();
-        btnPrikaziSveGoste = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPopisSoba = new javax.swing.JTable();
+        datOdlaska = new datechooser.beans.DateChooserCombo();
+        jLabel6 = new javax.swing.JLabel();
         btnDodajGosta = new javax.swing.JButton();
+        txtUkupno = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btnDodajSobu = new javax.swing.JButton();
+        txtTraziOIB = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnTraziOIB = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblRezSobe = new javax.swing.JTable();
+        btnPrikaziSveGoste = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         btnRezerviraj = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         datDolaska = new datechooser.beans.DateChooserCombo();
+        jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        datOdlaska = new datechooser.beans.DateChooserCombo();
+        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Pretraživanje gostiju po OIBu:");
-
-        txtTraziOIB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTraziOIBActionPerformed(evt);
-            }
-        });
-
-        btnTraziOIB.setText("Pretraži");
-        btnTraziOIB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraziOIBActionPerformed(evt);
-            }
-        });
-
-        btnPrikaziSveGoste.setText("Prikaži sve goste");
-
-        jLabel2.setText("Popis svih gostiju");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("Rezervacija");
-
-        jLabel4.setText("Popis soba");
+        jLabel8.setText("Datum odlaska:");
 
         tblPopisSoba.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,11 +68,28 @@ public class Rezervacija extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblPopisSoba);
 
+        jLabel6.setText("Ukupno:");
+
         btnDodajGosta.setText("Dodaj gosta");
+
+        jLabel1.setText("Pretraživanje gostiju po OIBu:");
 
         btnDodajSobu.setText("Dodaj sobu");
 
+        txtTraziOIB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTraziOIBActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Rezervacija");
+
+        btnTraziOIB.setText("Pretraži");
+        btnTraziOIB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziOIBActionPerformed(evt);
+            }
+        });
 
         tblRezSobe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,11 +104,18 @@ public class Rezervacija extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblRezSobe);
 
+        btnPrikaziSveGoste.setText("Prikaži sve goste");
+
         btnRezerviraj.setText("Rezerviraj");
+
+        jLabel2.setText("Popis svih gostiju");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Rezervacija");
 
         jLabel7.setText("Datum dolaska:");
 
-        jLabel8.setText("Datum odlaska:");
+        jLabel4.setText("Popis soba");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,38 +141,45 @@ public class Rezervacija extends javax.swing.JFrame {
                             .addComponent(btnDodajGosta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(77, 77, 77))))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(245, 245, 245)
+                .addComponent(btnRezerviraj)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(249, 249, 249)
+                                .addComponent(jLabel3)
+                                .addGap(185, 185, 185))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(249, 249, 249)
-                                    .addComponent(jLabel3)
-                                    .addGap(185, 185, 185))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(btnDodajSobu, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(datDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(32, 32, 32)
-                                            .addComponent(jLabel8)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(datOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, Short.MAX_VALUE)))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnDodajSobu, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(datDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(jLabel8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(datOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(btnRezerviraj)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtUkupno, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +209,7 @@ public class Rezervacija extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDodajSobu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(datDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,21 +219,25 @@ public class Rezervacija extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtUkupno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(btnRezerviraj)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTraziOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziOIBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTraziOIBActionPerformed
-
     private void txtTraziOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTraziOIBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTraziOIBActionPerformed
+
+    private void btnTraziOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziOIBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTraziOIBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,20 +256,27 @@ public class Rezervacija extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Rezervacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RezervacijaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Rezervacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RezervacijaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Rezervacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RezervacijaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Rezervacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RezervacijaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Rezervacija().setVisible(true);
+                RezervacijaView dialog = new RezervacijaView(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -271,6 +294,7 @@ public class Rezervacija extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -279,5 +303,6 @@ public class Rezervacija extends javax.swing.JFrame {
     private javax.swing.JTable tblPopisSoba;
     private javax.swing.JTable tblRezSobe;
     private javax.swing.JTextField txtTraziOIB;
+    private javax.swing.JTextField txtUkupno;
     // End of variables declaration//GEN-END:variables
 }

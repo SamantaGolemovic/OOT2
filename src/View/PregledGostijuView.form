@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,9 +26,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="521" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="632" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -37,28 +37,28 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtTraziIme" max="32767" attributes="0"/>
-                                  <Component id="txtTraziPrezime" pref="164" max="32767" attributes="0"/>
+                                  <Component id="txtTraziIme" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtTraziPrezime" alignment="0" pref="164" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnPrikaziSveGoste" max="32767" attributes="0"/>
-                                  <Component id="btnPretražiGoste" max="32767" attributes="0"/>
+                                  <Component id="btnPrikaziSveGoste" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnPretražiGoste" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -68,13 +68,13 @@
                                   <Component id="txtNovoPrezimeGosta" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnOdustaniPregledG" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtNovoImeGosta" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNoviOIB" max="32767" attributes="0"/>
+                                  <Component id="txtNoviOIB" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="btnAžuriraj" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace pref="183" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -92,7 +92,7 @@
                   <Component id="txtTraziIme" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="btnPrikaziSveGoste" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -131,7 +131,7 @@
                   <Component id="txtNoviOIB" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAžuriraj" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="100" max="32767" attributes="0"/>
               <Component id="btnOdustaniPregledG" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
@@ -139,35 +139,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Popis gostiju"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i goste po imenu i prezimenu"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ime:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Prezime:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnPretra&#x17e;iGoste">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtNoviBrMobitela">
     </Component>
     <Component class="javax.swing.JButton" name="btnPrikaziSveGoste">
       <Properties>
         <Property name="text" type="java.lang.String" value="Prika&#x17e;i sve"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNoviOIB">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -187,39 +166,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novo ime gosta:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novo prezime gosta:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novi broj mobitela:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novi OIB:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="A&#x17e;uriranje gosta"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNovoImeGosta">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNovoPrezimeGosta">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNoviBrMobitela">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNoviOIB">
-    </Component>
     <Component class="javax.swing.JButton" name="btnA&#x17e;uriraj">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#x17e;uriraj"/>
@@ -230,9 +176,63 @@
         <Property name="text" type="java.lang.String" value="Odustani"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo ime gosta:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JTextField" name="txtTraziPrezime">
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo prezime gosta:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JTextField" name="txtTraziIme">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novi broj mobitela:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Popis gostiju"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novi OIB:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i goste po imenu i prezimenu"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#x17e;uriranje gosta"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ime:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNovoImeGosta">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Prezime:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNovoPrezimeGosta">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPretra&#x17e;iGoste">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

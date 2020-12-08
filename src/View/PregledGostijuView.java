@@ -9,12 +9,13 @@ package View;
  *
  * @author veron
  */
-public class PregledGostiju extends javax.swing.JFrame {
+public class PregledGostijuView extends javax.swing.JDialog {
 
     /**
-     * Creates new form PregledGositju
+     * Creates new form PregledGostijuView
      */
-    public PregledGostiju() {
+    public PregledGostijuView(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -27,39 +28,29 @@ public class PregledGostiju extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btnPretražiGoste = new javax.swing.JButton();
+        txtNoviBrMobitela = new javax.swing.JTextField();
         btnPrikaziSveGoste = new javax.swing.JButton();
+        txtNoviOIB = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGosti = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtNovoImeGosta = new javax.swing.JTextField();
-        txtNovoPrezimeGosta = new javax.swing.JTextField();
-        txtNoviBrMobitela = new javax.swing.JTextField();
-        txtNoviOIB = new javax.swing.JTextField();
         btnAžuriraj = new javax.swing.JButton();
         btnOdustaniPregledG = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         txtTraziPrezime = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         txtTraziIme = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNovoImeGosta = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtNovoPrezimeGosta = new javax.swing.JTextField();
+        btnPretražiGoste = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Popis gostiju");
-
-        jLabel2.setText("Pretraži goste po imenu i prezimenu");
-
-        jLabel3.setText("Ime:");
-
-        jLabel4.setText("Prezime:");
-
-        btnPretražiGoste.setText("Pretraži");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnPrikaziSveGoste.setText("Prikaži sve");
 
@@ -76,19 +67,29 @@ public class PregledGostiju extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblGosti);
 
+        btnAžuriraj.setText("Ažuriraj");
+
+        btnOdustaniPregledG.setText("Odustani");
+
         jLabel5.setText("Novo ime gosta:");
 
         jLabel6.setText("Novo prezime gosta:");
 
         jLabel7.setText("Novi broj mobitela:");
 
+        jLabel1.setText("Popis gostiju");
+
         jLabel8.setText("Novi OIB:");
+
+        jLabel2.setText("Pretraži goste po imenu i prezimenu");
 
         jLabel9.setText("Ažuriranje gosta");
 
-        btnAžuriraj.setText("Ažuriraj");
+        jLabel3.setText("Ime:");
 
-        btnOdustaniPregledG.setText("Odustani");
+        jLabel4.setText("Prezime:");
+
+        btnPretražiGoste.setText("Pretraži");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +100,7 @@ public class PregledGostiju extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +136,7 @@ public class PregledGostiju extends javax.swing.JFrame {
                                     .addComponent(txtNoviOIB))
                                 .addGap(117, 117, 117)
                                 .addComponent(btnAžuriraj)))
-                        .addContainerGap(72, Short.MAX_VALUE))))
+                        .addContainerGap(183, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +180,7 @@ public class PregledGostiju extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(txtNoviOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAžuriraj))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(btnOdustaniPregledG)
                 .addGap(22, 22, 22))
         );
@@ -204,21 +205,27 @@ public class PregledGostiju extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PregledGostiju.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledGostijuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PregledGostiju.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledGostijuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PregledGostiju.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledGostijuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PregledGostiju.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledGostijuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PregledGostiju().setVisible(true);
+                PregledGostijuView dialog = new PregledGostijuView(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

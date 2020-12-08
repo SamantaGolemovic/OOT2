@@ -9,12 +9,14 @@ package View;
  *
  * @author veron
  */
-public class Sobe extends javax.swing.JFrame {
+public class SobeView extends javax.swing.JDialog {
 
+       
     /**
-     * Creates new form Sobe
+     * Creates new form SobeView
      */
-    public Sobe() {
+    public SobeView(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -27,11 +29,18 @@ public class Sobe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox6 = new javax.swing.JCheckBox();
+        btnAzurirajSobu = new javax.swing.JButton();
+        btnOdustaniSoba = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtNoviNazivSobe = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtNazivSobe = new javax.swing.JTextField();
+        txtNovaCijenaSobe = new javax.swing.JTextField();
+        txtBrojSobe = new javax.swing.JTextField();
+        cmbNoviTipSobe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtCijena = new javax.swing.JTextField();
+        btnTipoviSobe = new javax.swing.JButton();
+        txtCijenaSobe = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cmbTipSobe = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -46,25 +55,27 @@ public class Sobe extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        btnAzurirajSobu = new javax.swing.JButton();
-        btnOdustaniSoba = new javax.swing.JButton();
-        txtNoviNazivSobe = new javax.swing.JTextField();
-        txtNovaCijenaSobe = new javax.swing.JTextField();
-        cmbNoviTipSobe = new javax.swing.JTextField();
-        btnTipoviSobe = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jCheckBox6.setText("Rezervirana");
+
+        btnAzurirajSobu.setText("Ažuriraj");
+
+        btnOdustaniSoba.setText("Odustani");
 
         jLabel1.setText("Unos nove sobe");
 
-        jLabel2.setText("Naziv sobe:");
-
-        txtNazivSobe.setText("jTextField1");
+        jLabel2.setText("Broj sobe:");
 
         jLabel3.setText("Cijena noćenja:");
 
-        txtCijena.setText("jTextField1");
+        btnTipoviSobe.setText("Tipovi sobe");
+        btnTipoviSobe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTipoviSobeActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Tip sobe:");
 
@@ -93,7 +104,7 @@ public class Sobe extends javax.swing.JFrame {
 
         jLabel5.setText("Ažuriranje sobe");
 
-        jLabel6.setText("Novi naziv sobe:");
+        jLabel6.setText("Novi broj sobe:");
 
         jLabel7.setText("Nova cijena noćenja:");
 
@@ -102,20 +113,6 @@ public class Sobe extends javax.swing.JFrame {
         jCheckBox4.setText("Dozvoljeni ljubimci");
 
         jCheckBox5.setText("Dozvoljeno pušenje");
-
-        jCheckBox6.setText("Rezervirana");
-
-        btnAzurirajSobu.setText("Ažuriraj");
-
-        btnOdustaniSoba.setText("Odustani");
-
-        txtNoviNazivSobe.setText("jTextField1");
-
-        txtNovaCijenaSobe.setText("jTextField1");
-
-        cmbNoviTipSobe.setText("jTextField1");
-
-        btnTipoviSobe.setText("Tipovi sobe");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,10 +130,10 @@ public class Sobe extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbTipSobe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNazivSobe, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                                    .addComponent(txtCijena))
-                                .addGap(101, 101, 101)
+                                    .addComponent(txtBrojSobe)
+                                    .addComponent(txtCijenaSobe)
+                                    .addComponent(cmbTipSobe, 0, 130, Short.MAX_VALUE))
+                                .addGap(82, 82, 82)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox1)
                                     .addComponent(jCheckBox2)
@@ -171,7 +168,7 @@ public class Sobe extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(117, Short.MAX_VALUE))
+                        .addContainerGap(46, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,12 +189,12 @@ public class Sobe extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNazivSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBrojSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCijena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCijenaSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -225,13 +222,18 @@ public class Sobe extends javax.swing.JFrame {
                     .addComponent(jCheckBox6)
                     .addComponent(btnAzurirajSobu)
                     .addComponent(cmbNoviTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnOdustaniSoba)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTipoviSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipoviSobeActionPerformed
+        //TipSobeView tipSobeView = new TipSobeView(this,true);
+        
+    }//GEN-LAST:event_btnTipoviSobeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,20 +252,27 @@ public class Sobe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SobeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SobeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SobeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SobeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sobe().setVisible(true);
+                SobeView dialog = new SobeView(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -291,8 +300,8 @@ public class Sobe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSobe;
-    private javax.swing.JTextField txtCijena;
-    private javax.swing.JTextField txtNazivSobe;
+    private javax.swing.JTextField txtBrojSobe;
+    private javax.swing.JTextField txtCijenaSobe;
     private javax.swing.JTextField txtNovaCijenaSobe;
     private javax.swing.JTextField txtNoviNazivSobe;
     // End of variables declaration//GEN-END:variables
