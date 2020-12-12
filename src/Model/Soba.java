@@ -13,7 +13,7 @@ public class Soba {
     public int sifra_sobe;
     public String broj_sobe;
     public double cijena;
-    public Tip_sobe sifra_tipa;
+    public TipSobe sifra_tipa;
     public boolean rezervirana;
     public boolean dozvoljeno_pusenje;
     public boolean dozvoljeni_ljubimci;
@@ -42,11 +42,11 @@ public class Soba {
         this.cijena = cijena;
     }
 
-    public Tip_sobe getSifra_tipa() {
+    public TipSobe getSifra_tipa() {
         return sifra_tipa;
     }
 
-    public void setSifra_tipa(Tip_sobe sifra_tipa) {
+    public void setSifra_tipa(TipSobe sifra_tipa) {
         this.sifra_tipa = sifra_tipa;
     }
 

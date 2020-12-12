@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Gost;
+import Model.TipSobe;
 
 /**
  *
@@ -25,6 +26,14 @@ public class ControllAdmin {
             return "Gost nije spremljen";
         }
        
+    }
+    
+    public String spremiTipSobe(TipSobe tipSobe){
+        if (DBAdmin.spremanjeTipaSobe(tipSobe)) {
+            return "Tip sobe je uspješno spremljen";
+        } else {
+            return "Tip sobe nije spremljen";
+        }
     }
     
 }

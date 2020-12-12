@@ -144,13 +144,14 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
                     .addComponent(btnPregledGostiju))
                 .addGap(76, 76, 76)
                 .addComponent(btnPregledRezervacija)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Sammyna app");
         getAccessibleContext().setAccessibleDescription("samyy app");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bltPrijavaGostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bltPrijavaGostaActionPerformed
