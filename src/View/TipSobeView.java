@@ -7,6 +7,8 @@ package View;
 
 import Controller.ControllAdmin;
 import Model.TipSobe;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,12 +17,15 @@ import javax.swing.JOptionPane;
  */
 public class TipSobeView extends javax.swing.JDialog {
 
+    Object[] options = {"Potvrdi", "Odustani"};
     /**
      * Creates new form TipSobeView
      */
     public TipSobeView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        prikaziTipoveSoba();
+        
     }
 
     /**
@@ -40,6 +45,7 @@ public class TipSobeView extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTipSobe = new javax.swing.JList<>();
+        lstTipSobe.setModel(new DefaultListModel());
         jLabel5 = new javax.swing.JLabel();
         txtNoviTipSobe = new javax.swing.JTextField();
         btnAzurirajTipSobe = new javax.swing.JButton();
@@ -65,16 +71,21 @@ public class TipSobeView extends javax.swing.JDialog {
 
         jLabel3.setText("Ažuriraj tipa sobe");
 
-        lstTipSobe.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        lstTipSobe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstTipSobeMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(lstTipSobe);
 
         jLabel5.setText("Novi naziv tipa:");
 
         btnAzurirajTipSobe.setText("Ažuriraj");
+        btnAzurirajTipSobe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAzurirajTipSobeActionPerformed(evt);
+            }
+        });
 
         btnOdustaniTip.setText("Odustani");
         btnOdustaniTip.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +164,7 @@ public class TipSobeView extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOdustaniTipActionPerformed
 
     private void btnSpremiTipSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpremiTipSobeActionPerformed
-        Object[] options = {"Potvrdi", "Odustani"};
+        
         if (txtTipSobe.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -170,6 +181,7 @@ public class TipSobeView extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(this, potvrda);
 
                     txtTipSobe.setText("");
+                    prikaziTipoveSoba();
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
@@ -178,6 +190,44 @@ public class TipSobeView extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnSpremiTipSobeActionPerformed
+
+    private void btnAzurirajTipSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAzurirajTipSobeActionPerformed
+
+        if (lstTipSobe.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(this, "Niste odabrali kategoriju koju želite ažurirati!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String tip = lstTipSobe.getSelectedValue();
+        try {
+            if (txtNoviTipSobe.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            String noviTipSobe = txtNoviTipSobe.getText();
+            int sifra=controll.pretraziTip(tip);
+
+            TipSobe tipSobe = new TipSobe();
+            tipSobe.setSifra_tipa_sobe(sifra);
+            tipSobe.setOpis_tipa_sobe(noviTipSobe);
+            
+            int n = JOptionPane.showOptionDialog(null, "Želite li ažurirati kategoriju?", "Potvrda ažuriranja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+            if (n == 0) {
+                String potvrda = controll.azurirajTipSobe(tipSobe);
+                JOptionPane.showMessageDialog(this, potvrda);
+
+                txtNoviTipSobe.setText("");
+                prikaziTipoveSoba();
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAzurirajTipSobeActionPerformed
+
+    private void lstTipSobeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstTipSobeMouseClicked
+        txtNoviTipSobe.setText(lstTipSobe.getSelectedValue());
+    }//GEN-LAST:event_lstTipSobeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -238,5 +288,13 @@ public class TipSobeView extends javax.swing.JDialog {
     private javax.swing.JTextField txtTipSobe;
     // End of variables declaration//GEN-END:variables
 
+    private void prikaziTipoveSoba() {
+        List<TipSobe> lista = controll.dohvatiTipoveSoba();
+        DefaultListModel lstModel = (DefaultListModel) (lstTipSobe.getModel());
+        lstModel.clear();
+        for (TipSobe tipSobe : lista) {
+            lstModel.addElement(tipSobe.getOpis_tipa_sobe());
+        }
+    }
     ControllAdmin controll = new ControllAdmin();
 }

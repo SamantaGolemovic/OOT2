@@ -26,13 +26,15 @@ public class Soba {
         this.sifra_sobe = sifra_sobe;
     }
 
-    public String getOpis_sobe() {
+    public String getBroj_sobe() {
         return broj_sobe;
     }
 
-    public void setOpis_sobe(String opis_sobe) {
-        this.broj_sobe = opis_sobe;
+    public void setBroj_sobe(String broj_sobe) {
+        this.broj_sobe = broj_sobe;
     }
+
+    
 
     public double getCijena() {
         return cijena;

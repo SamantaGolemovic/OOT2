@@ -5,19 +5,29 @@
  */
 package View;
 
+import Controller.ControllAdmin;
+import Model.Soba;
+import Model.TipSobe;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author veron
  */
 public class SobeView extends javax.swing.JDialog {
 
-       
+    Object[] options = {"Potvrdi", "Odustani"};
+
     /**
      * Creates new form SobeView
      */
     public SobeView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        prikaziTipoveSoba();
+        prikaziUsluge();
     }
 
     /**
@@ -29,22 +39,21 @@ public class SobeView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox6 = new javax.swing.JCheckBox();
+        chNovoRezervirana = new javax.swing.JCheckBox();
         btnAzurirajSobu = new javax.swing.JButton();
         btnOdustaniSoba = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtNoviNazivSobe = new javax.swing.JTextField();
+        txtNoviBrojSobe = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNovaCijenaSobe = new javax.swing.JTextField();
         txtBrojSobe = new javax.swing.JTextField();
-        cmbNoviTipSobe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCijenaSobe = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cmbTipSobe = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        chLjubimci = new javax.swing.JCheckBox();
+        chPusenje = new javax.swing.JCheckBox();
+        chRezervirana = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSobe = new javax.swing.JTable();
         btnSPremiSobu = new javax.swing.JButton();
@@ -52,14 +61,21 @@ public class SobeView extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        chNovoLjubimci = new javax.swing.JCheckBox();
+        chNovoPusenje = new javax.swing.JCheckBox();
+        cmbNoviTipSobe = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(565, 550));
 
-        jCheckBox6.setText("Rezervirana");
+        chNovoRezervirana.setText("Rezervirana");
 
         btnAzurirajSobu.setText("Ažuriraj");
+        btnAzurirajSobu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAzurirajSobuActionPerformed(evt);
+            }
+        });
 
         btnOdustaniSoba.setText("Odustani");
 
@@ -71,28 +87,33 @@ public class SobeView extends javax.swing.JDialog {
 
         jLabel4.setText("Tip sobe:");
 
-        cmbTipSobe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        chLjubimci.setText("Dozvoljeni ljubimci");
 
-        jCheckBox1.setText("Dozvoljeni ljubimci");
+        chPusenje.setText("Dozvoljeno pušenje");
 
-        jCheckBox2.setText("Dozvoljeno pušenje");
-
-        jCheckBox3.setText("Rezervirana");
+        chRezervirana.setText("Rezervirana");
 
         tblSobe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Broj sobe","Tip sobe","Pušenje","Ljubimci", "Rezervirana","Cijena"
             }
         ));
+        tblSobe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSobeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSobe);
 
         btnSPremiSobu.setText("Spremi");
+        btnSPremiSobu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSPremiSobuActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Ažuriranje sobe");
 
@@ -102,9 +123,9 @@ public class SobeView extends javax.swing.JDialog {
 
         jLabel8.setText("Novi tip sobe:");
 
-        jCheckBox4.setText("Dozvoljeni ljubimci");
+        chNovoLjubimci.setText("Dozvoljeni ljubimci");
 
-        jCheckBox5.setText("Dozvoljeno pušenje");
+        chNovoPusenje.setText("Dozvoljeno pušenje");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,43 +148,39 @@ public class SobeView extends javax.swing.JDialog {
                                     .addComponent(cmbTipSobe, 0, 130, Short.MAX_VALUE))
                                 .addGap(82, 82, 82)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jCheckBox3)
+                                        .addComponent(chRezervirana)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnAzurirajSobu)
-                                            .addComponent(btnSPremiSobu)))))
+                                        .addComponent(btnAzurirajSobu))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(chLjubimci)
+                                            .addComponent(chPusenje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnSPremiSobu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel8))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNoviNazivSobe, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                            .addComponent(txtNovaCijenaSobe)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(cmbNoviTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNoviBrojSobe, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                    .addComponent(txtNovaCijenaSobe)
+                                    .addComponent(cmbNoviTipSobe, 0, 135, Short.MAX_VALUE))
                                 .addGap(42, 42, 42)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox6)
-                                    .addComponent(jCheckBox4)
-                                    .addComponent(jCheckBox5))
+                                    .addComponent(chNovoRezervirana)
+                                    .addComponent(chNovoLjubimci)
+                                    .addComponent(chNovoPusenje))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(46, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(24, 428, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addContainerGap(173, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(251, 251, 251)
                 .addComponent(btnOdustaniSoba)
@@ -178,45 +195,161 @@ public class SobeView extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtBrojSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(chLjubimci))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCijenaSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2))
+                    .addComponent(chPusenje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox3)
-                    .addComponent(btnSPremiSobu))
-                .addGap(59, 59, 59)
+                    .addComponent(chRezervirana))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSPremiSobu)
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jCheckBox4)
-                    .addComponent(txtNoviNazivSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chNovoLjubimci)
+                    .addComponent(txtNoviBrojSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jCheckBox5)
+                    .addComponent(chNovoPusenje)
                     .addComponent(txtNovaCijenaSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jCheckBox6)
+                    .addComponent(chNovoRezervirana)
                     .addComponent(btnAzurirajSobu)
                     .addComponent(cmbNoviTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addComponent(btnOdustaniSoba)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSPremiSobuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPremiSobuActionPerformed
+        try {
+            if (txtBrojSobe.getText().isEmpty() || txtCijenaSobe.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            int n = JOptionPane.showOptionDialog(null, "Želite li spremiti novu sobu?", "Potvrda prijave", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+
+            if (n == 0) {
+                String brojSobe = txtBrojSobe.getText();
+                double cijenaSobe = Double.parseDouble(txtCijenaSobe.getText());
+                String tipSobe = (String) cmbTipSobe.getSelectedItem();
+                boolean ljubimci = chLjubimci.isSelected();
+                boolean pusenje = chPusenje.isSelected();
+                boolean rezervirana = chRezervirana.isSelected();
+
+                Soba soba = new Soba();
+                soba.setBroj_sobe(brojSobe);
+                soba.setCijena(cijenaSobe);
+                soba.setDozvoljeni_ljubimci(ljubimci);
+                soba.setDozvoljeno_pusenje(pusenje);
+                soba.setRezervirana(rezervirana);
+
+                List<Model.TipSobe> lista = controll.dohvatiTipoveSoba();
+                for (Model.TipSobe tipS : lista) {
+                    if (tipS.getOpis_tipa_sobe().equals(tipSobe)) {
+                        soba.setSifra_tipa(tipS);
+                    }
+                }
+
+                String potvrda = controll.spremiSobu(soba);
+                JOptionPane.showMessageDialog(this, potvrda);
+
+                txtBrojSobe.setText("");
+                txtCijenaSobe.setText("");
+                chLjubimci.setSelected(false);
+                chPusenje.setSelected(false);
+                chRezervirana.setSelected(false);
+                prikaziUsluge();
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSPremiSobuActionPerformed
+
+    private void tblSobeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSobeMouseClicked
+        int red = tblSobe.getSelectedRow();
+        int tipSobe = Integer.parseInt(tblSobe.getValueAt(red, 1).toString()) - 1;
+        int sifraTipa;
+        System.out.println(red + " " + tipSobe);
+        txtNoviBrojSobe.setText(tblSobe.getValueAt(red, 0).toString());
+        txtNovaCijenaSobe.setText(tblSobe.getValueAt(red, 5).toString());
+        cmbNoviTipSobe.setSelectedIndex(tipSobe);
+        String pusenje = tblSobe.getValueAt(red, 2).toString();
+        String ljubimci = tblSobe.getValueAt(red, 3).toString();
+        String rezervirana = tblSobe.getValueAt(red, 4).toString();
+        if (pusenje == "true") {
+            chNovoPusenje.setSelected(true);
+        } else if (pusenje != "true") {
+            chNovoPusenje.setSelected(false);
+        }
+        if (ljubimci == "true") {
+            chNovoLjubimci.setSelected(true);
+        } else if (ljubimci != "true") {
+            chNovoLjubimci.setSelected(false);
+        }
+        if (rezervirana == "true") {
+            chNovoRezervirana.setSelected(true);
+        } else if (rezervirana != "true") {
+            chNovoRezervirana.setSelected(false);
+        }
+    }//GEN-LAST:event_tblSobeMouseClicked
+
+    private void btnAzurirajSobuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAzurirajSobuActionPerformed
+        /* if (tblSobe.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Niste odabrali sobu koju želite ažurirati!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        try {
+            if (txtNoviBrojSobe.getText().isEmpty() || txtNovaCijenaSobe.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            int n = JOptionPane.showOptionDialog(null, "Želite li ažurirati sobu?", "Potvrda ažuriranja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+            if (n == 0) {
+                int red = tblSobe.getSelectedRow();
+                int brojSobe = Integer.parseInt(tblSobe.getValueAt(red, 0).toString());
+                String naziv = txtNoviBrojSobe.getText();
+                Double cijena = Double.parseDouble(txtNovaCijenaSobe.getText());
+                String opisTipaSobe = (String) cmbNoviTipSobe.getSelectedItem();
+                TipSobe tipSobe = controll.dohvatiTipSobeID(opisTipaSobe);
+                
+                Usluga usluga = new Usluga();
+                usluga.setSifra(sifra);
+                usluga.setNaziv(naziv);
+                usluga.setCijena(cijena);
+                usluga.setKategorija(kategorija);
+                usluga.setOpis(opis);
+
+                String potvrda = controllA.azurirajUslugu(usluga);
+                JOptionPane.showMessageDialog(this, potvrda);
+
+                txtNoviNaziv.setText("");
+                txtNovaCijena.setText("");
+                txtNoviOpis.setText("");
+
+                prikaziUsluge();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Niste unesli sve podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+        }*/
+    }//GEN-LAST:event_btnAzurirajSobuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,14 +397,14 @@ public class SobeView extends javax.swing.JDialog {
     private javax.swing.JButton btnAzurirajSobu;
     private javax.swing.JButton btnOdustaniSoba;
     private javax.swing.JButton btnSPremiSobu;
-    private javax.swing.JTextField cmbNoviTipSobe;
+    private javax.swing.JCheckBox chLjubimci;
+    private javax.swing.JCheckBox chNovoLjubimci;
+    private javax.swing.JCheckBox chNovoPusenje;
+    private javax.swing.JCheckBox chNovoRezervirana;
+    private javax.swing.JCheckBox chPusenje;
+    private javax.swing.JCheckBox chRezervirana;
+    private javax.swing.JComboBox<String> cmbNoviTipSobe;
     private javax.swing.JComboBox<String> cmbTipSobe;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -285,6 +418,28 @@ public class SobeView extends javax.swing.JDialog {
     private javax.swing.JTextField txtBrojSobe;
     private javax.swing.JTextField txtCijenaSobe;
     private javax.swing.JTextField txtNovaCijenaSobe;
-    private javax.swing.JTextField txtNoviNazivSobe;
+    private javax.swing.JTextField txtNoviBrojSobe;
     // End of variables declaration//GEN-END:variables
+
+    private void prikaziUsluge() {
+        ((DefaultTableModel) tblSobe.getModel()).setNumRows(0);
+        List<Soba> lista = controll.dohvatiSobe();
+        for (Soba soba : lista) {
+            Object[] rowData = {soba.getBroj_sobe(), soba.getSifra_tipa().getSifra_tipa_sobe(), soba.isDozvoljeno_pusenje(), soba.isDozvoljeni_ljubimci(), soba.isRezervirana(), soba.getCijena()};
+            ((DefaultTableModel) tblSobe.getModel()).addRow(rowData);
+        }
+    }
+
+    private void prikaziTipoveSoba() {
+
+        List<TipSobe> lista = controll.dohvatiTipoveSoba();
+
+        for (TipSobe tipSobe : lista) {
+            cmbTipSobe.addItem(tipSobe.getOpis_tipa_sobe());
+            cmbNoviTipSobe.addItem(tipSobe.getOpis_tipa_sobe());
+        }
+    }
+
+    ControllAdmin controll = new ControllAdmin();
+
 }

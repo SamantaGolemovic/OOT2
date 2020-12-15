@@ -13,41 +13,17 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Model.Gost;
+import Model.Soba;
 import Model.TipSobe;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  *
  * @author Korisnik
  */
 public class DBAdmin {
-
-    public static int povecaj_sifru_gosta() {
-        int id = 1;
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT max(sifra_gosta) FROM Gost";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                id = rs.getInt(1) + 1;
-            }
-            return id;
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return id;
-
-    }
 
     /**
      *
@@ -59,13 +35,12 @@ public class DBAdmin {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
-            String sql = "INSERT INTO Gost(sifra_gosta,ime_gosta,prezime_gosta,br_mobitela,oib_gosta) VALUES (?,?,?,?,?);";
+            String sql = "INSERT INTO Gost(ime_gosta,prezime_gosta,br_mobitela,oib_gosta) VALUES (?,?,?,?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, gost.getSifra_gosta());
-            stmt.setString(2, gost.getIme_gosta());
-            stmt.setString(3, gost.getPrezime_gosta());
-            stmt.setString(4, gost.getBr_mobitela());
-            stmt.setString(5, gost.getOib_gosta());
+            stmt.setString(1, gost.getIme_gosta());
+            stmt.setString(2, gost.getPrezime_gosta());
+            stmt.setString(3, gost.getBr_mobitela());
+            stmt.setString(4, gost.getOib_gosta());
 
             stmt.execute();
             conn.close();
@@ -90,7 +65,7 @@ public class DBAdmin {
             String sql = "INSERT INTO Tip_sobe(opis_tipa_sobe) VALUES (?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, tipSobe.getOpis_tipa_sobe());
-            
+
             stmt.execute();
             conn.close();
             return true;
@@ -105,6 +80,174 @@ public class DBAdmin {
         }
 
         return false;
+    }
+
+    public static List getListaTipovaSoba() {
+        try {
+            List lista = new ArrayList<TipSobe>();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM Tip_sobe";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int sifra = rs.getInt(1);
+                String opis = rs.getString(2);
+
+                TipSobe tipSobe = new TipSobe();
+                tipSobe.setSifra_tipa_sobe(sifra);
+                tipSobe.setOpis_tipa_sobe(opis);
+                lista.add(tipSobe);
+            }
+            return lista;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static boolean azuriranjeKategorije(TipSobe tipSobe) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr:3306/sgolemovic", "sgolemovic", "11");
+            int sifra = tipSobe.getSifra_tipa_sobe();
+            String opis = tipSobe.getOpis_tipa_sobe();
+
+            String sql = "Update Tip_sobe SET opis_tipa_sobe='" + opis + "' where sifra_tipa=" + sifra + ";";
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+
+            conn.close();
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public static int dohvatiSifruTipa(String tip) {
+        int sifra = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
+            Statement stmt = conn.createStatement();
+
+            String sql = "SELECT sifra_tipa FROM Tip_sobe where opis_tipa_sobe='" + tip + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                sifra = rs.getInt(1);
+
+            }
+
+            return sifra;
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public static boolean spremanjeSobe(Soba soba) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr:3306/sgolemovic", "sgolemovic", "11");
+            String sql = "INSERT INTO Soba(broj_sobe,cijena_sobe,sifra_tipa,rezervirana,pusenje,ljubimci) VALUES (?,?,?,?,?,?);";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, soba.getBroj_sobe());
+            stmt.setDouble(2, soba.getCijena());
+            stmt.setInt(3, soba.getSifra_tipa().getSifra_tipa_sobe());
+            stmt.setBoolean(4, soba.isRezervirana());
+            stmt.setBoolean(5, soba.isDozvoljeno_pusenje());
+            stmt.setBoolean(6, soba.isDozvoljeni_ljubimci());
+
+            stmt.execute();
+            conn.close();
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public static List getListaSoba() {
+        try {
+            List lista = new ArrayList<Soba>();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
+            Statement stmt = conn.createStatement();
+            Statement stmt2 = conn.createStatement();
+            String sql = "SELECT * FROM Soba";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                int sifraSobe = rs.getInt(1);
+                String brojSobe = rs.getString(2);
+                Double cijena = rs.getDouble(3);
+                int sifraTipaSobe = rs.getInt(4);
+                boolean rezervirana = rs.getBoolean(5);
+                boolean pusenje = rs.getBoolean(6);
+                boolean ljubimci = rs.getBoolean(7);
+
+                TipSobe tipSobe = new TipSobe();
+                String sql2 = "SELECT opis_tipa_sobe FROM Tip_sobe WHERE sifra_tipa=" + sifraTipaSobe + ";";
+                ResultSet rs2 = stmt2.executeQuery(sql2);
+                while (rs2.next()) {
+                    String opisTipaSobe = rs2.getString(1);
+
+                    tipSobe.setSifra_tipa_sobe(sifraTipaSobe);
+                    tipSobe.setOpis_tipa_sobe(opisTipaSobe);
+
+                }
+
+                Soba soba = new Soba();
+                soba.setSifra_sobe(sifraSobe);
+                soba.setBroj_sobe(brojSobe);
+                soba.setCijena(cijena);
+                soba.setSifra_tipa(tipSobe);
+                soba.setRezervirana(rezervirana);
+                soba.setDozvoljeno_pusenje(pusenje);
+                soba.setDozvoljeni_ljubimci(ljubimci);
+
+                lista.add(soba);
+
+            }
+            return lista;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

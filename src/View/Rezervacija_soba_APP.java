@@ -46,6 +46,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sammy app");
+        setPreferredSize(new java.awt.Dimension(525, 480));
 
         jLabel1.setText("Glavni izbornik");
 
