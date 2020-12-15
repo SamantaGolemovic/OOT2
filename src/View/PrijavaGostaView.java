@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
 public class PrijavaGostaView extends javax.swing.JDialog {
 
     Gost gost;
-    
+
     /**
      * Creates new form PrijavaGostaView
      */
     public PrijavaGostaView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
 
     /**
@@ -42,22 +42,23 @@ public class PrijavaGostaView extends javax.swing.JDialog {
         txtBrMobitela = new javax.swing.JTextField();
         txtOIB = new javax.swing.JTextField();
         btnPrijava = new javax.swing.JButton();
-        btnPregledGostiju = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Prijava novog gosta");
-        setBackground(new java.awt.Color(153, 204, 255));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         jLabel5.setText("OIB:");
 
-        btnOdustani.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
         btnOdustani.setText("Odustani");
+        btnOdustani.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdustaniActionPerformed(evt);
+            }
+        });
 
-        btnPrijava.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
         btnPrijava.setText("Prijava");
         btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,16 +66,12 @@ public class PrijavaGostaView extends javax.swing.JDialog {
             }
         });
 
-        btnPregledGostiju.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
-        btnPregledGostiju.setText("Pregled svih gostiju");
+        jLabel1.setText("Prijava novog gosta");
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         jLabel2.setText("Ime gosta:");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         jLabel3.setText("Prezime gosta:");
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         jLabel4.setText("Broj mobitela:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,15 +79,12 @@ public class PrijavaGostaView extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -100,19 +94,21 @@ public class PrijavaGostaView extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtImeGosta)
                             .addComponent(txtPrezimeGosta)
-                            .addComponent(txtBrMobitela)
-                            .addComponent(txtOIB, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtOIB)
+                            .addComponent(txtBrMobitela, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(btnPregledGostiju, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(btnOdustani)
+                        .addGap(122, 122, 122)
+                        .addComponent(btnPrijava)))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(btnPregledGostiju, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtImeGosta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -128,33 +124,68 @@ public class PrijavaGostaView extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
+                    .addComponent(btnOdustani)
+                    .addComponent(btnPrijava))
+                .addGap(93, 93, 93))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
-        String ime=txtImeGosta.getText();
-        String prezime =txtPrezimeGosta.getText();
-        String brMoba = txtBrMobitela.getText();
-        String OIB = txtOIB.getText();
-        
-        Gost gost= new Gost();
-        gost.setIme_gosta(ime);
-        gost.setPrezime_gosta(prezime);
-        gost.setBr_mobitela(brMoba);
-        gost.setOib_gosta(OIB);
-        
-        String potvrda = controll.spremiGosta(gost);
-        JOptionPane.showMessageDialog(this, potvrda);
-        
-        
+        Object[] options = {"Potvrdi", "Odustani"};
+        if (txtImeGosta.getText().isEmpty() || txtPrezimeGosta.getText().isEmpty() || txtOIB.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        } else {
+            int n = JOptionPane.showOptionDialog(null, "Želite li prijaviti novog gosta?", "Potvrda prijave", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+
+            if (n == 0) {
+                try {
+
+                    Gost gost = new Gost();
+                    String ime = txtImeGosta.getText();
+                    String prezime = txtPrezimeGosta.getText();
+                    String brMoba = txtBrMobitela.getText();
+                    String OIB = txtOIB.getText();
+
+                    gost.setIme_gosta(ime);
+                    gost.setPrezime_gosta(prezime);
+                    gost.setBr_mobitela(brMoba);
+                    gost.setOib_gosta(OIB);
+
+                    String potvrda = controll.spremiGosta(gost);
+                    JOptionPane.showMessageDialog(this, potvrda);
+
+                    txtImeGosta.setText("");
+                    txtPrezimeGosta.setText("");
+                    txtBrMobitela.setText("");
+                    txtOIB.setText("");
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
     }//GEN-LAST:event_btnPrijavaActionPerformed
+
+    private void btnOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniActionPerformed
+        Object[] options = {"Potvrdi", "Odustani"};
+        int n = JOptionPane.showOptionDialog(null, "Želite li odustati?\nUneseni podaci nisu pohranjeni.", "Potvrda odustajanja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+
+        if (n == 0) {
+            txtImeGosta.setText("");
+            txtPrezimeGosta.setText("");
+            txtBrMobitela.setText("");
+            txtOIB.setText("");
+            dispose();
+        }
+
+    }//GEN-LAST:event_btnOdustaniActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,8 +231,8 @@ public class PrijavaGostaView extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOdustani;
-    private javax.swing.JButton btnPregledGostiju;
     private javax.swing.JButton btnPrijava;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
