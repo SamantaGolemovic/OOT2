@@ -5,27 +5,18 @@
  */
 package View;
 
-import Controller.ControllAdmin;
-import Model.TipSobe;
-import java.util.List;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author veron
  */
 public class TipSobeView extends javax.swing.JDialog {
 
-    Object[] options = {"Potvrdi", "Odustani"};
     /**
      * Creates new form TipSobeView
      */
     public TipSobeView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        prikaziTipoveSoba();
-        
     }
 
     /**
@@ -40,52 +31,38 @@ public class TipSobeView extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtTipSobe = new javax.swing.JTextField();
-        btnSpremiTipSobe = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTipSobe = new javax.swing.JList<>();
-        lstTipSobe.setModel(new DefaultListModel());
         jLabel5 = new javax.swing.JLabel();
-        txtNoviTipSobe = new javax.swing.JTextField();
+        txtTipSobe1 = new javax.swing.JTextField();
         btnAzurirajTipSobe = new javax.swing.JButton();
         btnOdustaniTip = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tip sobe");
 
         jLabel2.setText("Unos novog tipa sobe");
 
         jLabel1.setText("Naziv tipa:");
 
-        btnSpremiTipSobe.setText("Spremi tip sobe");
-        btnSpremiTipSobe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSpremiTipSobeActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Spremi tip sobe");
 
         jLabel4.setText("Popis tipova sobe");
 
         jLabel3.setText("Ažuriraj tipa sobe");
 
-        lstTipSobe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lstTipSobeMouseClicked(evt);
-            }
+        lstTipSobe.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(lstTipSobe);
 
         jLabel5.setText("Novi naziv tipa:");
 
         btnAzurirajTipSobe.setText("Ažuriraj");
-        btnAzurirajTipSobe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAzurirajTipSobeActionPerformed(evt);
-            }
-        });
 
         btnOdustaniTip.setText("Odustani");
         btnOdustaniTip.addActionListener(new java.awt.event.ActionListener() {
@@ -99,135 +76,65 @@ public class TipSobeView extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnOdustaniTip)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNoviTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSpremiTipSobe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAzurirajTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator3)
-                    .addComponent(jSeparator4))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTipSobe1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAzurirajTipSobe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(btnOdustaniTip)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSpremiTipSobe))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton1))
+                .addGap(47, 47, 47)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtNoviTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTipSobe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAzurirajTipSobe))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(btnOdustaniTip)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOdustaniTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniTipActionPerformed
         dispose();
     }//GEN-LAST:event_btnOdustaniTipActionPerformed
-
-    private void btnSpremiTipSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpremiTipSobeActionPerformed
-        
-        if (txtTipSobe.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        } else {
-            int n = JOptionPane.showOptionDialog(null, "Želite li spremiti novi tip sobe?", "Potvrda prijave", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
-
-            if (n == 0) {
-                try {
-                    TipSobe tipSobe = new TipSobe();
-                    String tipsobe = txtTipSobe.getText();
-                    tipSobe.setOpis_tipa_sobe(tipsobe);
-
-                    String potvrda = controll.spremiTipSobe(tipSobe);
-                    JOptionPane.showMessageDialog(this, potvrda);
-
-                    txtTipSobe.setText("");
-                    prikaziTipoveSoba();
-
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
-                }
-
-            }
-        }
-    }//GEN-LAST:event_btnSpremiTipSobeActionPerformed
-
-    private void btnAzurirajTipSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAzurirajTipSobeActionPerformed
-
-        if (lstTipSobe.isSelectionEmpty()) {
-            JOptionPane.showMessageDialog(this, "Niste odabrali kategoriju koju želite ažurirati!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        String tip = lstTipSobe.getSelectedValue();
-        try {
-            if (txtNoviTipSobe.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-
-            String noviTipSobe = txtNoviTipSobe.getText();
-            int sifra=controll.pretraziTip(tip);
-
-            TipSobe tipSobe = new TipSobe();
-            tipSobe.setSifra_tipa_sobe(sifra);
-            tipSobe.setOpis_tipa_sobe(noviTipSobe);
-            
-            int n = JOptionPane.showOptionDialog(null, "Želite li ažurirati kategoriju?", "Potvrda ažuriranja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
-            if (n == 0) {
-                String potvrda = controll.azurirajTipSobe(tipSobe);
-                JOptionPane.showMessageDialog(this, potvrda);
-
-                txtNoviTipSobe.setText("");
-                prikaziTipoveSoba();
-            }
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnAzurirajTipSobeActionPerformed
-
-    private void lstTipSobeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstTipSobeMouseClicked
-        txtNoviTipSobe.setText(lstTipSobe.getSelectedValue());
-    }//GEN-LAST:event_lstTipSobeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -274,27 +181,15 @@ public class TipSobeView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAzurirajTipSobe;
     private javax.swing.JButton btnOdustaniTip;
-    private javax.swing.JButton btnSpremiTipSobe;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JList<String> lstTipSobe;
-    private javax.swing.JTextField txtNoviTipSobe;
     private javax.swing.JTextField txtTipSobe;
+    private javax.swing.JTextField txtTipSobe1;
     // End of variables declaration//GEN-END:variables
-
-    private void prikaziTipoveSoba() {
-        List<TipSobe> lista = controll.dohvatiTipoveSoba();
-        DefaultListModel lstModel = (DefaultListModel) (lstTipSobe.getModel());
-        lstModel.clear();
-        for (TipSobe tipSobe : lista) {
-            lstModel.addElement(tipSobe.getOpis_tipa_sobe());
-        }
-    }
-    ControllAdmin controll = new ControllAdmin();
 }

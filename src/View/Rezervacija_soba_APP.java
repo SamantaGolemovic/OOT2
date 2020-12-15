@@ -35,21 +35,25 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         bltPrijavaGosta = new javax.swing.JButton();
         btnRezervacija = new javax.swing.JButton();
-        btnZaposlenici = new javax.swing.JButton();
+        btnTipSobe = new javax.swing.JButton();
         btnSobe = new javax.swing.JButton();
+        btnZaposlenici = new javax.swing.JButton();
         btnPregledGostiju = new javax.swing.JButton();
         btnPregledRezervacija = new javax.swing.JButton();
-        btnTipSobe = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sammy app");
-        setPreferredSize(new java.awt.Dimension(525, 480));
+        setTitle("Glavni izbornik");
+        setBackground(new java.awt.Color(153, 255, 153));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setText("Glavni izbornik");
+        jPanel1.setBackground(new java.awt.Color(221, 217, 143));
 
+        bltPrijavaGosta.setBackground(new java.awt.Color(51, 51, 51));
+        bltPrijavaGosta.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        bltPrijavaGosta.setForeground(new java.awt.Color(255, 255, 255));
         bltPrijavaGosta.setText("Prijava gosta");
         bltPrijavaGosta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +61,9 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnRezervacija.setBackground(new java.awt.Color(51, 51, 51));
+        btnRezervacija.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        btnRezervacija.setForeground(new java.awt.Color(255, 255, 255));
         btnRezervacija.setText("Rezervacija");
         btnRezervacija.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,34 +71,9 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
-        btnZaposlenici.setText("Zaposlenici");
-        btnZaposlenici.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnZaposleniciActionPerformed(evt);
-            }
-        });
-
-        btnSobe.setText("Sobe");
-        btnSobe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSobeActionPerformed(evt);
-            }
-        });
-
-        btnPregledGostiju.setText("Pregled gostiju");
-        btnPregledGostiju.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPregledGostijuActionPerformed(evt);
-            }
-        });
-
-        btnPregledRezervacija.setText("Pregled rezervacija");
-        btnPregledRezervacija.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPregledRezervacijaActionPerformed(evt);
-            }
-        });
-
+        btnTipSobe.setBackground(new java.awt.Color(102, 102, 102));
+        btnTipSobe.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        btnTipSobe.setForeground(new java.awt.Color(255, 255, 255));
         btnTipSobe.setText("Tip soba");
         btnTipSobe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,60 +81,97 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnSobe.setBackground(new java.awt.Color(102, 102, 102));
+        btnSobe.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        btnSobe.setForeground(new java.awt.Color(255, 255, 255));
+        btnSobe.setText("Sobe");
+        btnSobe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSobeActionPerformed(evt);
+            }
+        });
+
+        btnZaposlenici.setBackground(new java.awt.Color(102, 102, 102));
+        btnZaposlenici.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        btnZaposlenici.setForeground(new java.awt.Color(255, 255, 255));
+        btnZaposlenici.setText("Zaposlenici");
+        btnZaposlenici.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZaposleniciActionPerformed(evt);
+            }
+        });
+
+        btnPregledGostiju.setBackground(new java.awt.Color(153, 153, 153));
+        btnPregledGostiju.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        btnPregledGostiju.setForeground(new java.awt.Color(255, 255, 255));
+        btnPregledGostiju.setText("Pregled gostiju");
+        btnPregledGostiju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPregledGostijuActionPerformed(evt);
+            }
+        });
+
+        btnPregledRezervacija.setBackground(new java.awt.Color(153, 153, 153));
+        btnPregledRezervacija.setFont(new java.awt.Font("Century Gothic", 0, 17)); // NOI18N
+        btnPregledRezervacija.setForeground(new java.awt.Color(255, 255, 255));
+        btnPregledRezervacija.setText("Pregled rezervacija");
+        btnPregledRezervacija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPregledRezervacijaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bltPrijavaGosta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPregledRezervacija, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRezervacija, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnZaposlenici, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPregledGostiju, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(183, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(bltPrijavaGosta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRezervacija, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTipSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnZaposlenici, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPregledGostiju, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPregledRezervacija, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(btnPregledRezervacija)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnZaposlenici, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bltPrijavaGosta, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                            .addComponent(btnTipSobe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPregledGostiju, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRezervacija, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                    .addComponent(btnSobe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(103, 103, 103))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRezervacija)
-                    .addComponent(bltPrijavaGosta))
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSobe)
-                    .addComponent(btnTipSobe))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnZaposlenici)
-                    .addComponent(btnPregledGostiju))
-                .addGap(76, 76, 76)
-                .addComponent(btnPregledRezervacija)
-                .addContainerGap(53, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getAccessibleContext().setAccessibleName("Sammyna app");
-        getAccessibleContext().setAccessibleDescription("samyy app");
+        getAccessibleContext().setAccessibleName("");
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bltPrijavaGostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bltPrijavaGostaActionPerformed
@@ -226,6 +245,6 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
     private javax.swing.JButton btnSobe;
     private javax.swing.JButton btnTipSobe;
     private javax.swing.JButton btnZaposlenici;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
