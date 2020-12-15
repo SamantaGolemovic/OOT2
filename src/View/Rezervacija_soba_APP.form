@@ -97,6 +97,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="bltPrijavaGosta">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Prijava gosta"/>
       </Properties>
       <Events>
@@ -105,6 +108,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRezervacija">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Rezervacija"/>
       </Properties>
       <Events>
@@ -113,6 +119,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZaposlenici">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Zaposlenici"/>
       </Properties>
       <Events>
@@ -121,6 +130,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSobe">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Sobe"/>
       </Properties>
       <Events>
@@ -129,6 +141,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnPregledGostiju">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pregled gostiju"/>
       </Properties>
       <Events>
@@ -145,6 +160,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnTipSobe">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tip soba"/>
       </Properties>
       <Events>

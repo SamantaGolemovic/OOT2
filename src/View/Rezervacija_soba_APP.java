@@ -50,6 +50,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
 
         jLabel1.setText("Glavni izbornik");
 
+        bltPrijavaGosta.setBackground(new java.awt.Color(204, 0, 51));
         bltPrijavaGosta.setText("Prijava gosta");
         bltPrijavaGosta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +58,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnRezervacija.setBackground(new java.awt.Color(204, 0, 51));
         btnRezervacija.setText("Rezervacija");
         btnRezervacija.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +66,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnZaposlenici.setBackground(new java.awt.Color(204, 0, 51));
         btnZaposlenici.setText("Zaposlenici");
         btnZaposlenici.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +74,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnSobe.setBackground(new java.awt.Color(204, 0, 51));
         btnSobe.setText("Sobe");
         btnSobe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +82,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnPregledGostiju.setBackground(new java.awt.Color(204, 0, 51));
         btnPregledGostiju.setText("Pregled gostiju");
         btnPregledGostiju.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +97,7 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
             }
         });
 
+        btnTipSobe.setBackground(new java.awt.Color(204, 0, 51));
         btnTipSobe.setText("Tip soba");
         btnTipSobe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
