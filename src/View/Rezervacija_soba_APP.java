@@ -18,12 +18,14 @@ public class Rezervacija_soba_APP extends javax.swing.JFrame {
     PregledGostijuView pregledGostijuView = new PregledGostijuView(this,true);
     PregledRezervacijaView pregledRezervacijaView = new PregledRezervacijaView(this,true);
     TipSobeView tipSobeView = new TipSobeView(this,true);
+    Login loginView = new Login(this,true);
     
     /**
      * Creates new form Rezervacija_soba_APP
      */
     public Rezervacija_soba_APP() {
         initComponents();
+        loginView.setVisible(true);
     }
 
     /**

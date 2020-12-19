@@ -59,6 +59,18 @@ public class PrijavaGostaView extends javax.swing.JDialog {
             }
         });
 
+        txtBrMobitela.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBrMobitelaKeyPressed(evt);
+            }
+        });
+
+        txtOIB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtOIBKeyPressed(evt);
+            }
+        });
+
         btnPrijava.setText("Prijava");
         btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,8 +149,8 @@ public class PrijavaGostaView extends javax.swing.JDialog {
 
     private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
         Object[] options = {"Potvrdi", "Odustani"};
-        if (txtImeGosta.getText().isEmpty() || txtPrezimeGosta.getText().isEmpty() || txtOIB.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+        if (txtImeGosta.getText().isEmpty() || txtPrezimeGosta.getText().isEmpty() || txtOIB.getText().isEmpty() || txtOIB.getText().length() != 11) {
+            JOptionPane.showMessageDialog(this, "Provjerite unesene podatke!\nOIB treba sadržavati točno 11 znamenki \ni svako polje treba biti popunjeno.", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
             return;
         } else {
             int n = JOptionPane.showOptionDialog(null, "Želite li prijaviti novog gosta?", "Potvrda prijave", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
@@ -186,6 +198,26 @@ public class PrijavaGostaView extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnOdustaniActionPerformed
+
+    private void txtBrMobitelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBrMobitelaKeyPressed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            txtBrMobitela.setEditable(false);
+            JOptionPane.showMessageDialog(this, "Broj mobitela gosta smije sadržavati samo znamenke!", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            txtBrMobitela.setEditable(true);
+        }
+    }//GEN-LAST:event_txtBrMobitelaKeyPressed
+
+    private void txtOIBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOIBKeyPressed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            txtOIB.setEditable(false);
+            JOptionPane.showMessageDialog(this, "OIB gosta smije sadržavati samo znamenke!", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            txtOIB.setEditable(true);
+        }
+    }//GEN-LAST:event_txtOIBKeyPressed
 
     /**
      * @param args the command line arguments

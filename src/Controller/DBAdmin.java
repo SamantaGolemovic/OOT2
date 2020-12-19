@@ -31,6 +31,36 @@ public class DBAdmin {
      * @param gost
      * @return
      */
+    
+    public static int prijava(String korisnickoIme, String lozinka) {
+        int dozvola = 0;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
+            Statement stmt = conn.createStatement();
+
+            String sql = "SELECT sifra_zaposlenika FROM Zaposlenik where korisnicko_ime='" + korisnickoIme + "' and lozinka="+lozinka+";";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                dozvola = rs.getInt(1);
+
+            }
+
+            return dozvola;
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
     public static boolean spremanjeGosta(Gost gost) {
 
         try {
@@ -376,4 +406,144 @@ public class DBAdmin {
 
         return null;
     }
+
+    public static List getListaGostijuOIB(String oib) {
+        try {
+            List lista = new ArrayList<Gost>();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM Gost where oib_gosta='" + oib + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                int sifra_gosta = rs.getInt(1);
+                String ime_gosta = rs.getString(2);
+                String prezime_gosta = rs.getString(3);
+                String br_mobitela = rs.getString(4);
+                
+                Gost gost=new Gost();
+                gost.setSifra_gosta(sifra_gosta);
+                gost.setIme_gosta(ime_gosta);
+                gost.setPrezime_gosta(prezime_gosta);
+                gost.setBr_mobitela(br_mobitela);
+                gost.setOib_gosta(oib);
+                
+                lista.add(gost);
+
+            }
+            return lista;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public static boolean azuriranjeGosta(Gost gost) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr:3306/sgolemovic", "sgolemovic", "11");
+            int sifraGosta = gost.getSifra_gosta();
+            String imeGosta = gost.getIme_gosta();
+            String prezimeGosta = gost.getPrezime_gosta();
+            String brMobitela=gost.getBr_mobitela();
+            String oibGosta = gost.getOib_gosta();
+            
+            
+            String sql = "Update Gost SET ime_gosta='" + imeGosta + "', prezime_gosta='" + prezimeGosta + "',br_mobitela='"
+                    + brMobitela + "', oib_gosta='" + oibGosta + "' where sifra_gosta=" + sifraGosta + ";";
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+
+            conn.close();
+
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    /*
+    public static List pretrazivanjeDatuma(java.sql.Date d1, java.sql.Date d2) 
+    {
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr:3306/sgolemovic", "sgolemovic", "11");
+            List lista = new ArrayList<Soba>();
+            Statement stmt = conn.createStatement();
+            Statement stmt2 = conn.createStatement();
+            String sql = "SELECT * FROM Rezervacija where datum_dolaska> '"+d1+"' and datum_odlaska>'"+d2+"';";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                
+                int ID = rs.getInt(1);
+                String imeVl = rs.getString(2);
+                String prezimeVl = rs.getString(3);
+                String brMoba = rs.getString(4);
+                String imePsa = rs.getString(5);
+                String pasmina = rs.getString(6);
+                int kat=rs.getInt(7);
+                Date datum=(Date) rs.getDate(8);
+                
+                Kategorija kategorija=new Kategorija();
+                String sql2 = "SELECT * FROM K_Kategorija WHERE sifra="+kat+";";
+                ResultSet rs2 = stmt2.executeQuery(sql2);
+                while(rs2.next()){
+                    String nazivK=rs2.getString(2);
+                    String opisK=rs2.getString(3);
+
+                    kategorija.setSifra(kat);
+                    kategorija.setNaziv(nazivK);
+                    kategorija.setOpis(opisK);
+                }
+                
+                Ljubimac ljubimac = new Ljubimac();
+                ljubimac.setID(ID);
+                ljubimac.setIme_vlasnika(imeVl);
+                ljubimac.setPrezime_vlasnika(prezimeVl);
+                ljubimac.setBr_mob(brMoba);
+                ljubimac.setIme_psa(imePsa);
+                ljubimac.setPasmina(pasmina);
+                ljubimac.setKategorija(kategorija);
+                ljubimac.setDatum_upisa(datum);
+                
+                
+                lista.add(ljubimac);
+                            
+            }
+            return lista;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (conn!=null)
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(DBProdaja.class.getName()).log(Level.SEVERE, null, ex1);
+            }        
+        return null;  
+    }
+    */
+    
 }

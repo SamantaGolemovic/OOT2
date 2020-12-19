@@ -18,7 +18,9 @@ public class Rezervacija {
     
     private double ukupanIznos;
 
-    private Date datum_rezervacije;
+    private Date datum_dolaska;
+    
+    private Date datum_odlaska;
 
     private List<Rez_soba> listaStavki = new ArrayList<Rez_soba>();
 
@@ -38,14 +40,6 @@ public class Rezervacija {
         this.ukupanIznos = ukupanIznos;
     }
 
-    public Date getVrijemeKreiranja() {
-        return datum_rezervacije;
-    }
-
-    public void setVrijemeKreiranja(Date vrijemeKreiranja) {
-        this.datum_rezervacije = vrijemeKreiranja;
-    }
-
     public List<Rez_soba> getListaStavki() {
         return listaStavki;
     }
@@ -54,15 +48,33 @@ public class Rezervacija {
         this.listaStavki = listaStavki;
     }
 
-    public Rez_soba dodavanjeStavke(Rez_soba stavka) {
-        listaStavki.add(stavka);
-        return stavka;
+    public Rez_soba dodavanjeRezSobe(Rez_soba rez_soba) {
+        listaStavki.add(rez_soba);
+        return rez_soba;
     }
     
     public void izracunIznosaRacuna() {
         ukupanIznos = 0;
-        for (Rez_soba stavka: listaStavki){
-            ukupanIznos+= stavka.getSoba().getCijena();
+        for (Rez_soba rez_soba: listaStavki){
+            ukupanIznos+= rez_soba.getSoba().getCijena();
         }
     }
+
+    public Date getDatum_dolaska() {
+        return datum_dolaska;
+    }
+
+    public void setDatum_dolaska(Date datum_dolaska) {
+        this.datum_dolaska = datum_dolaska;
+    }
+
+    public Date getDatum_odlaska() {
+        return datum_odlaska;
+    }
+
+    public void setDatum_odlaska(Date datum_odlaska) {
+        this.datum_odlaska = datum_odlaska;
+    }
+    
+    
 }

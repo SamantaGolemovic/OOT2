@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -28,23 +28,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="632" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtTraziIme" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtTraziPrezime" alignment="0" pref="164" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnPrikaziSveGoste" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnPretražiGoste" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="txtTraziOib" min="-2" pref="164" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="btnPretražiGoste" min="-2" pref="93" max="-2" attributes="0"/>
+                              <EmptySpace pref="79" max="32767" attributes="0"/>
+                              <Component id="btnPrikaziSveGoste" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
@@ -74,7 +67,7 @@
                               <Component id="btnAžuriraj" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="183" max="32767" attributes="0"/>
+                      <EmptySpace pref="147" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -89,22 +82,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnPretražiGoste" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTraziIme" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTraziOib" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPrikaziSveGoste" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="btnPrikaziSveGoste" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTraziPrezime" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="157" max="-2" attributes="0"/>
@@ -131,7 +112,7 @@
                   <Component id="txtNoviOIB" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAžuriraj" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
               <Component id="btnOdustaniPregledG" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
@@ -140,6 +121,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txtNoviBrMobitela">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNoviBrMobitelaKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPrikaziSveGoste">
       <Properties>
@@ -150,6 +134,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNoviOIB">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNoviOIBKeyPressed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -161,6 +148,9 @@
               <Connection code="new javax.swing.table.DefaultTableModel(&#xa;            new Object [][] {&#xa;                &#xa;            },&#xa;            new String [] {&#xa;                &quot;Sifra&quot;,&quot;Ime&quot;, &quot;Prezime&quot;, &quot;OIB&quot;, &quot;Kontakt&quot;&#xa;            }&#xa;        )" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblGostiMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -168,25 +158,32 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#x17e;uriraj"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnA&#x17e;urirajActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOdustaniPregledG">
       <Properties>
         <Property name="text" type="java.lang.String" value="Odustani"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOdustaniPregledGActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo ime gosta:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTraziPrezime">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo prezime gosta:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTraziIme">
+    <Component class="javax.swing.JTextField" name="txtTraziOib">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTraziOibKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -205,7 +202,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i goste po imenu i prezimenu"/>
+        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i goste po OIB-u"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -215,15 +212,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ime:"/>
+        <Property name="text" type="java.lang.String" value="OIB:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNovoImeGosta">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Prezime:"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNovoPrezimeGosta">
     </Component>

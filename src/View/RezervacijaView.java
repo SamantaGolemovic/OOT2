@@ -5,18 +5,30 @@
  */
 package View;
 
+import Controller.ControllAdmin;
+import Model.Gost;
+import Model.Soba;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author veron
  */
 public class RezervacijaView extends javax.swing.JDialog {
 
+    //dodat uvjet da se nemre dodat dvaput ista soba u rezervaciji
     /**
      * Creates new form RezervacijaView
      */
     public RezervacijaView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        prikaziGoste();
+        novaRezervacija();
     }
 
     /**
@@ -33,7 +45,6 @@ public class RezervacijaView extends javax.swing.JDialog {
         tblPopisSoba = new javax.swing.JTable();
         datOdlaska = new datechooser.beans.DateChooserCombo();
         jLabel6 = new javax.swing.JLabel();
-        btnDodajGosta = new javax.swing.JButton();
         txtUkupno = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnDodajSobu = new javax.swing.JButton();
@@ -44,12 +55,14 @@ public class RezervacijaView extends javax.swing.JDialog {
         tblRezSobe = new javax.swing.JTable();
         btnPrikaziSveGoste = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        tblSviGosti = new javax.swing.JTable();
         btnRezerviraj = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         datDolaska = new datechooser.beans.DateChooserCombo();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnSlobodneSobe = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,20 +70,15 @@ public class RezervacijaView extends javax.swing.JDialog {
 
         tblPopisSoba.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sifra","Broj sobe", "Tip sobe", "Pušenje","Ljubimci", "Cijena"
             }
         ));
         jScrollPane2.setViewportView(tblPopisSoba);
 
         jLabel6.setText("Ukupno:");
-
-        btnDodajGosta.setText("Dodaj gosta");
 
         jLabel1.setText("Pretraživanje gostiju po OIBu:");
 
@@ -79,6 +87,11 @@ public class RezervacijaView extends javax.swing.JDialog {
         txtTraziOIB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTraziOIBActionPerformed(evt);
+            }
+        });
+        txtTraziOIB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTraziOIBKeyPressed(evt);
             }
         });
 
@@ -93,18 +106,35 @@ public class RezervacijaView extends javax.swing.JDialog {
 
         tblRezSobe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sifra gosta","Ime gosta", "Prezime gosta", "Šifra sobe","Broj sobe", "Cijena sobe"
             }
         ));
         jScrollPane3.setViewportView(tblRezSobe);
 
         btnPrikaziSveGoste.setText("Prikaži sve goste");
+        btnPrikaziSveGoste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrikaziSveGosteActionPerformed(evt);
+            }
+        });
+
+        tblSviGosti.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Sifra","Ime", "Prezime", "OIB"
+            }
+        ));
+        tblSviGosti.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSviGostiMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblSviGosti);
 
         btnRezerviraj.setText("Rezerviraj");
 
@@ -115,7 +145,14 @@ public class RezervacijaView extends javax.swing.JDialog {
 
         jLabel7.setText("Datum dolaska:");
 
-        jLabel4.setText("Popis soba");
+        jLabel4.setText("Popis slobodnih soba");
+
+        btnSlobodneSobe.setText("Prikaži slobodne sobe");
+        btnSlobodneSobe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSlobodneSobeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,61 +162,61 @@ public class RezervacijaView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPrikaziSveGoste)
+                            .addComponent(btnTraziOIB, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTraziOIB, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGap(58, 58, 58))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPrikaziSveGoste)
-                            .addComponent(btnTraziOIB, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDodajGosta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(btnRezerviraj)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel5))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(249, 249, 249)
-                                .addComponent(jLabel3)
-                                .addGap(185, 185, 185))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btnDodajSobu, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(datDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(datOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(jLabel3)
+                        .addGap(186, 186, 186))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUkupno, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUkupno, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(btnRezerviraj))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(datDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(datOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDodajSobu, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSlobodneSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,43 +224,41 @@ public class RezervacijaView extends javax.swing.JDialog {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtTraziOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTraziOIB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPrikaziSveGoste)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDodajGosta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(27, 27, 27)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDodajSobu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(btnPrikaziSveGoste))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(datDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(datOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSlobodneSobe)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDodajSobu)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtUkupno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(btnRezerviraj)
                 .addContainerGap())
         );
@@ -236,8 +271,63 @@ public class RezervacijaView extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTraziOIBActionPerformed
 
     private void btnTraziOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziOIBActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (txtTraziOIB.getText().isEmpty() || txtTraziOIB.getText().length() != 11) {
+                JOptionPane.showMessageDialog(this, "Unesi točan OIB gosta!\nOIB mora sadržavati točno 11 znamenki!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            String oib = txtTraziOIB.getText();
+            pretraziGosteOIB(oib);
+
+            txtTraziOIB.setText("");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnTraziOIBActionPerformed
+
+    private void btnPrikaziSveGosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziSveGosteActionPerformed
+        prikaziGoste();
+    }//GEN-LAST:event_btnPrikaziSveGosteActionPerformed
+
+    private void txtTraziOIBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTraziOIBKeyPressed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            txtTraziOIB.setEditable(false);
+            JOptionPane.showMessageDialog(this, "OIB gosta smije sadržavati samo znamenke!", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            txtTraziOIB.setEditable(true);
+        }
+    }//GEN-LAST:event_txtTraziOIBKeyPressed
+
+    private void tblSviGostiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSviGostiMouseClicked
+
+        int red = tblSviGosti.getSelectedRow();
+        int sifraGosta = Integer.parseInt(tblSviGosti.getValueAt(red, 0).toString());
+        Gost noviGost = new Gost();
+        List<Gost> lista = controll.dohvatiGoste();
+        for (Gost gost : lista) {
+            if (gost.getSifra_gosta() == sifraGosta) {
+                noviGost = gost;
+                break;
+            }
+        }
+    }//GEN-LAST:event_tblSviGostiMouseClicked
+
+    private void btnSlobodneSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSlobodneSobeActionPerformed
+        try {
+            Calendar datum1 = datDolaska.getSelectedDate();
+            Date d1 = datum1.getTime();
+            Calendar datum2 = datOdlaska.getSelectedDate();
+            Date d2 = datum2.getTime();
+
+            prikaziSlobodneSobe(d1, d2);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSlobodneSobeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,10 +372,10 @@ public class RezervacijaView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDodajGosta;
     private javax.swing.JButton btnDodajSobu;
     private javax.swing.JButton btnPrikaziSveGoste;
     private javax.swing.JButton btnRezerviraj;
+    private javax.swing.JButton btnSlobodneSobe;
     private javax.swing.JButton btnTraziOIB;
     private datechooser.beans.DateChooserCombo datDolaska;
     private datechooser.beans.DateChooserCombo datOdlaska;
@@ -302,7 +392,58 @@ public class RezervacijaView extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblPopisSoba;
     private javax.swing.JTable tblRezSobe;
+    private javax.swing.JTable tblSviGosti;
     private javax.swing.JTextField txtTraziOIB;
     private javax.swing.JTextField txtUkupno;
     // End of variables declaration//GEN-END:variables
+
+    private void prikaziGoste() {
+        ((DefaultTableModel) tblSviGosti.getModel()).setNumRows(0);
+        List<Gost> lista = controll.dohvatiGoste();
+        for (Gost gost : lista) {
+            Object[] rowData = {gost.getSifra_gosta(), gost.getIme_gosta(), gost.getPrezime_gosta(),
+                gost.getOib_gosta()};
+            ((DefaultTableModel) tblSviGosti.getModel()).addRow(rowData);
+        }
+    }
+
+    private void pretraziGosteOIB(String oib) {
+        ((DefaultTableModel) tblSviGosti.getModel()).setNumRows(0);
+        List<Gost> lista = controll.pretraziGosteOIB(oib);
+        for (Gost gost : lista) {
+            Object[] rowData = {gost.getSifra_gosta(), gost.getIme_gosta(), gost.getPrezime_gosta(),
+                gost.getOib_gosta()};
+            ((DefaultTableModel) tblSviGosti.getModel()).addRow(rowData);
+        }
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nema gosta s traženim OIB-om!", "Poruka!", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void prikaziSlobodneSobe(Date d1, Date d2) {
+        /*
+        ((DefaultTableModel) tblPopisSoba.getModel()).setNumRows(0);
+        List<Soba> lista = controll.dohvatiSlobodneSobe(d1, d2);
+        for (Soba soba : lista) {
+            Object[] rowData = {soba.getSifra_sobe(), soba.getBroj_sobe(), soba.getSifra_tipa().getSifra_tipa_sobe(), soba.isDozvoljeno_pusenje(), soba.isDozvoljeni_ljubimci(), soba.getCijena()};
+            ((DefaultTableModel) tblPopisSoba.getModel()).addRow(rowData);
+        }if(lista.isEmpty())
+            JOptionPane.showMessageDialog(this, "Nema soba koje su slobodne u navedenom razdoblju", "Poruka!", JOptionPane.INFORMATION_MESSAGE);
+         */
+    }
+
+    private void novaRezervacija() {
+        controll.kreiranjeNoveRezervacije();
+        prikaziGoste();
+        txtTraziOIB.setText("");
+        osvjeziRezSobe();
+    }
+
+    private void osvjeziRezSobe() {
+        ((DefaultTableModel) tblRezSobe.getModel()).setNumRows(0);
+        prikaziGoste();
+    }
+
+    ControllAdmin controll = new ControllAdmin();
+
 }

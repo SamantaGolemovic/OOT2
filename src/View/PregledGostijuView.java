@@ -7,7 +7,10 @@ package View;
 
 import Controller.ControllAdmin;
 import Model.Gost;
+import Model.Soba;
+import Model.TipSobe;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,13 +19,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PregledGostijuView extends javax.swing.JDialog {
 
+    Object[] options = {"Potvrdi", "Odustani"};
+
     /**
      * Creates new form PregledGostijuView
      */
     public PregledGostijuView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
 
     /**
@@ -42,9 +47,8 @@ public class PregledGostijuView extends javax.swing.JDialog {
         btnAžuriraj = new javax.swing.JButton();
         btnOdustaniPregledG = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtTraziPrezime = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtTraziIme = new javax.swing.JTextField();
+        txtTraziOib = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -52,16 +56,27 @@ public class PregledGostijuView extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNovoImeGosta = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         txtNovoPrezimeGosta = new javax.swing.JTextField();
         btnPretražiGoste = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        txtNoviBrMobitela.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoviBrMobitelaKeyPressed(evt);
+            }
+        });
+
         btnPrikaziSveGoste.setText("Prikaži sve");
         btnPrikaziSveGoste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrikaziSveGosteActionPerformed(evt);
+            }
+        });
+
+        txtNoviOIB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoviOIBKeyPressed(evt);
             }
         });
 
@@ -73,15 +88,36 @@ public class PregledGostijuView extends javax.swing.JDialog {
                 "Sifra","Ime", "Prezime", "OIB", "Kontakt"
             }
         ));
+        tblGosti.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGostiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGosti);
 
         btnAžuriraj.setText("Ažuriraj");
+        btnAžuriraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAžurirajActionPerformed(evt);
+            }
+        });
 
         btnOdustaniPregledG.setText("Odustani");
+        btnOdustaniPregledG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdustaniPregledGActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Novo ime gosta:");
 
         jLabel6.setText("Novo prezime gosta:");
+
+        txtTraziOib.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTraziOibKeyPressed(evt);
+            }
+        });
 
         jLabel7.setText("Novi broj mobitela:");
 
@@ -89,13 +125,11 @@ public class PregledGostijuView extends javax.swing.JDialog {
 
         jLabel8.setText("Novi OIB:");
 
-        jLabel2.setText("Pretraži goste po imenu i prezimenu");
+        jLabel2.setText("Pretraži goste po OIB-u");
 
         jLabel9.setText("Ažuriranje gosta");
 
-        jLabel3.setText("Ime:");
-
-        jLabel4.setText("Prezime:");
+        jLabel3.setText("OIB:");
 
         btnPretražiGoste.setText("Pretraži");
         btnPretražiGoste.addActionListener(new java.awt.event.ActionListener() {
@@ -113,20 +147,16 @@ public class PregledGostijuView extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTraziIme)
-                                    .addComponent(txtTraziPrezime, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnPrikaziSveGoste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPretražiGoste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel3)
+                                .addGap(38, 38, 38)
+                                .addComponent(txtTraziOib, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)
+                                .addComponent(btnPretražiGoste, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                                .addComponent(btnPrikaziSveGoste)))
                         .addGap(79, 79, 79))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +179,7 @@ public class PregledGostijuView extends javax.swing.JDialog {
                                     .addComponent(txtNoviOIB))
                                 .addGap(117, 117, 117)
                                 .addComponent(btnAžuriraj)))
-                        .addContainerGap(183, Short.MAX_VALUE))))
+                        .addContainerGap(147, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,17 +190,9 @@ public class PregledGostijuView extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPretražiGoste)
                     .addComponent(jLabel3)
-                    .addComponent(txtTraziIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnPrikaziSveGoste))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtTraziPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtTraziOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPrikaziSveGoste))
+                .addGap(59, 59, 59)
                 .addComponent(jLabel1)
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,21 +215,120 @@ public class PregledGostijuView extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(txtNoviOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAžuriraj))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(btnOdustaniPregledG)
                 .addGap(22, 22, 22))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPretražiGosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretražiGosteActionPerformed
-        prikaziGoste();
+        try {
+            if (txtTraziOib.getText().isEmpty() || txtTraziOib.getText().length() != 11) {
+                JOptionPane.showMessageDialog(this, "Unesi točan OIB gosta!\nOIB mora sadržavati točno 11 znamenki!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            String oib = txtTraziOib.getText();
+            pretraziGosteOIB(oib);
+
+            txtTraziOib.setText("");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Greška!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPretražiGosteActionPerformed
 
     private void btnPrikaziSveGosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziSveGosteActionPerformed
         prikaziGoste();
     }//GEN-LAST:event_btnPrikaziSveGosteActionPerformed
+
+    private void txtTraziOibKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTraziOibKeyPressed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            txtTraziOib.setEditable(false);
+            JOptionPane.showMessageDialog(this, "OIB gosta smije sadržavati samo znamenke!", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            txtTraziOib.setEditable(true);
+        }
+    }//GEN-LAST:event_txtTraziOibKeyPressed
+
+    private void tblGostiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGostiMouseClicked
+        int red = tblGosti.getSelectedRow();
+        int sifra = Integer.parseInt(tblGosti.getValueAt(red, 0).toString()) - 1;
+
+        txtNovoImeGosta.setText(tblGosti.getValueAt(red, 1).toString());
+        txtNovoPrezimeGosta.setText(tblGosti.getValueAt(red, 2).toString());
+        txtNoviOIB.setText(tblGosti.getValueAt(red, 3).toString());
+        txtNoviBrMobitela.setText(tblGosti.getValueAt(red, 4).toString());
+       
+    }//GEN-LAST:event_tblGostiMouseClicked
+
+    private void btnAžurirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAžurirajActionPerformed
+        if (tblGosti.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Niste odabrali gosta kojeg želite ažurirati!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        try {
+            if (txtNovoImeGosta.getText().isEmpty() || txtNovoPrezimeGosta.getText().isEmpty() || txtNoviBrMobitela.getText().isEmpty() || txtNoviOIB.getText().isEmpty() ||txtNoviOIB.getText().length()!=11) {
+                JOptionPane.showMessageDialog(this, "Nisu uneseni svi podaci!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            int n = JOptionPane.showOptionDialog(null, "Želite li ažurirati gosta?", "Potvrda ažuriranja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+            if (n == 0) {
+                int red = tblGosti.getSelectedRow();
+                int sifraGosta = Integer.parseInt(tblGosti.getValueAt(red, 0).toString());
+                String ime = txtNovoImeGosta.getText();
+                String prezime = txtNovoPrezimeGosta.getText();
+                String brMoba = txtNoviBrMobitela.getText();
+                String oib = txtNoviOIB.getText();
+
+                Gost gost = new Gost();
+                gost.setSifra_gosta(sifraGosta);
+                gost.setIme_gosta(ime);
+                gost.setPrezime_gosta(prezime);
+                gost.setBr_mobitela(brMoba);
+                gost.setOib_gosta(oib);
+
+                String potvrda = controll.azurirajGosta(gost);
+                JOptionPane.showMessageDialog(this, potvrda);
+
+                txtNovoImeGosta.setText("");
+                txtNovoPrezimeGosta.setText("");
+                txtNoviBrMobitela.setText("");
+                txtNoviOIB.setText("");
+                prikaziGoste();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Niste unesli sve podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAžurirajActionPerformed
+
+    private void txtNoviOIBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoviOIBKeyPressed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            txtNoviOIB.setEditable(false);
+            JOptionPane.showMessageDialog(this, "OIB gosta smije sadržavati samo znamenke!", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            txtNoviOIB.setEditable(true);
+        }
+    }//GEN-LAST:event_txtNoviOIBKeyPressed
+
+    private void txtNoviBrMobitelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoviBrMobitelaKeyPressed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            txtNoviBrMobitela.setEditable(false);
+            JOptionPane.showMessageDialog(this, "Broj mobitela smije sadržavati samo znamenke!", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            txtNoviBrMobitela.setEditable(true);
+        }
+    }//GEN-LAST:event_txtNoviBrMobitelaKeyPressed
+
+    private void btnOdustaniPregledGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniPregledGActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnOdustaniPregledGActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +380,6 @@ public class PregledGostijuView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -271,20 +391,31 @@ public class PregledGostijuView extends javax.swing.JDialog {
     private javax.swing.JTextField txtNoviOIB;
     private javax.swing.JTextField txtNovoImeGosta;
     private javax.swing.JTextField txtNovoPrezimeGosta;
-    private javax.swing.JTextField txtTraziIme;
-    private javax.swing.JTextField txtTraziPrezime;
+    private javax.swing.JTextField txtTraziOib;
     // End of variables declaration//GEN-END:variables
 
-private void prikaziGoste(){
-        ((DefaultTableModel)tblGosti.getModel()).setNumRows(0);
+    private void prikaziGoste() {
+        ((DefaultTableModel) tblGosti.getModel()).setNumRows(0);
         List<Gost> lista = controll.dohvatiGoste();
-        for (Gost gost : lista){
-            Object[] rowData = {gost.getSifra_gosta(),gost.getIme_gosta(),gost.getPrezime_gosta(),
-            gost.getOib_gosta(),gost.getBr_mobitela()};
-            ((DefaultTableModel)tblGosti.getModel()).addRow(rowData);
+        for (Gost gost : lista) {
+            Object[] rowData = {gost.getSifra_gosta(), gost.getIme_gosta(), gost.getPrezime_gosta(),
+                gost.getOib_gosta(), gost.getBr_mobitela()};
+            ((DefaultTableModel) tblGosti.getModel()).addRow(rowData);
         }
     }
 
+    private void pretraziGosteOIB(String oib) {
+        ((DefaultTableModel) tblGosti.getModel()).setNumRows(0);
+        List<Gost> lista = controll.pretraziGosteOIB(oib);
+        for (Gost gost : lista) {
+            Object[] rowData = {gost.getSifra_gosta(), gost.getIme_gosta(), gost.getPrezime_gosta(),
+                gost.getOib_gosta(), gost.getBr_mobitela()};
+            ((DefaultTableModel) tblGosti.getModel()).addRow(rowData);
+        }
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nema gosta s traženim OIB-om!", "Poruka!", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     ControllAdmin controll = new ControllAdmin();
 
 }

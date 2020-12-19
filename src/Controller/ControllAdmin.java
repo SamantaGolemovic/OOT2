@@ -6,8 +6,10 @@
 package Controller;
 
 import Model.Gost;
+import Model.Rezervacija;
 import Model.Soba;
 import Model.TipSobe;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,6 +17,8 @@ import java.util.List;
  * @author veron
  */
 public class ControllAdmin {
+
+    private Rezervacija rezervacija;
 
     public String spremiGosta(Gost gost) {
 
@@ -75,8 +79,43 @@ public class ControllAdmin {
             return "Soba nije ažurirana!";
         }
     }
-    
+
     public List dohvatiGoste() {
         return DBAdmin.getListaGostiju();
     }
+
+    public List pretraziGosteOIB(String oib) {
+        return DBAdmin.getListaGostijuOIB(oib);
+    }
+
+    public String azurirajGosta(Gost gost) {
+        if (DBAdmin.azuriranjeGosta(gost)) {
+            return "Gost je uspješno ažuriran!";
+        } else {
+            return "Gost nije ažurirana!";
+        }
+    }
+
+    public void kreiranjeNoveRezervacije() {
+        rezervacija = new Rezervacija();
+    }
+
+    public int prijava(String korisnickoIme, String lozinka) {
+        int dozvola=DBAdmin.prijava(korisnickoIme, lozinka);
+        if (dozvola!=0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /*
+    public List dohvatiSlobodneSobe(Date datum1, Date datum2) {
+        java.util.Date utilDate = datum1;
+        java.sql.Date sqlDate1 = new java.sql.Date(utilDate.getTime());
+        java.util.Date utilDate2 = datum2;
+        java.sql.Date sqlDate2 = new java.sql.Date(utilDate2.getTime());
+        return DBAdmin.pretrazivanjeDatuma(sqlDate1, sqlDate2);
+    }
+     */
 }
