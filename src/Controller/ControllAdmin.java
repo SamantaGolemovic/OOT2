@@ -59,8 +59,24 @@ public class ControllAdmin {
             return "Soba nije spremljena";
         }
     }
-    
+
     public List dohvatiSobe() {
         return DBAdmin.getListaSoba();
+    }
+
+    public TipSobe dohvatiTipSobe(String nazivTipaSobe) {
+        return DBAdmin.getTipSobe(nazivTipaSobe);
+    }
+
+    public String azurirajSobu(Soba soba) {
+        if (DBAdmin.azuriranjeSobe(soba)) {
+            return "Soba je uspješno ažurirana!";
+        } else {
+            return "Soba nije ažurirana!";
+        }
+    }
+    
+    public List dohvatiGoste() {
+        return DBAdmin.getListaGostiju();
     }
 }

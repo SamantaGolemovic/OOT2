@@ -145,6 +145,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Prika&#x17e;i sve"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrikaziSveGosteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNoviOIB">
     </Component>
@@ -154,13 +157,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tblGosti">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;            new Object [][] {&#xa;                &#xa;            },&#xa;            new String [] {&#xa;                &quot;Sifra&quot;,&quot;Ime&quot;, &quot;Prezime&quot;, &quot;OIB&quot;, &quot;Kontakt&quot;&#xa;            }&#xa;        )" type="code"/>
             </Property>
           </Properties>
         </Component>
@@ -233,6 +231,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPretra&#x17e;iGosteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -27,7 +27,7 @@ public class SobeView extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         prikaziTipoveSoba();
-        prikaziUsluge();
+        prikaziSobe();
     }
 
     /**
@@ -78,6 +78,11 @@ public class SobeView extends javax.swing.JDialog {
         });
 
         btnOdustaniSoba.setText("Odustani");
+        btnOdustaniSoba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdustaniSobaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Unos nove sobe");
 
@@ -98,7 +103,7 @@ public class SobeView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Broj sobe","Tip sobe","Pušenje","Ljubimci", "Rezervirana","Cijena"
+                "Šifra","Broj sobe","Tip sobe","Pušenje","Ljubimci", "Rezervirana","Cijena"
             }
         ));
         tblSobe.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,13 +220,13 @@ public class SobeView extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(chNovoLjubimci)
-                    .addComponent(txtNoviBrojSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNoviBrojSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chNovoPusenje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(chNovoPusenje)
-                    .addComponent(txtNovaCijenaSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNovaCijenaSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chNovoLjubimci))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -275,7 +280,7 @@ public class SobeView extends javax.swing.JDialog {
                 chLjubimci.setSelected(false);
                 chPusenje.setSelected(false);
                 chRezervirana.setSelected(false);
-                prikaziUsluge();
+                prikaziSobe();
 
             }
         } catch (Exception ex) {
@@ -285,15 +290,14 @@ public class SobeView extends javax.swing.JDialog {
 
     private void tblSobeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSobeMouseClicked
         int red = tblSobe.getSelectedRow();
-        int tipSobe = Integer.parseInt(tblSobe.getValueAt(red, 1).toString()) - 1;
-        int sifraTipa;
-        System.out.println(red + " " + tipSobe);
-        txtNoviBrojSobe.setText(tblSobe.getValueAt(red, 0).toString());
-        txtNovaCijenaSobe.setText(tblSobe.getValueAt(red, 5).toString());
+        int tipSobe = Integer.parseInt(tblSobe.getValueAt(red, 2).toString()) - 1;
+
+        txtNoviBrojSobe.setText(tblSobe.getValueAt(red, 1).toString());
+        txtNovaCijenaSobe.setText(tblSobe.getValueAt(red, 6).toString());
         cmbNoviTipSobe.setSelectedIndex(tipSobe);
-        String pusenje = tblSobe.getValueAt(red, 2).toString();
-        String ljubimci = tblSobe.getValueAt(red, 3).toString();
-        String rezervirana = tblSobe.getValueAt(red, 4).toString();
+        String pusenje = tblSobe.getValueAt(red, 3).toString();
+        String ljubimci = tblSobe.getValueAt(red, 4).toString();
+        String rezervirana = tblSobe.getValueAt(red, 5).toString();
         if (pusenje == "true") {
             chNovoPusenje.setSelected(true);
         } else if (pusenje != "true") {
@@ -312,7 +316,7 @@ public class SobeView extends javax.swing.JDialog {
     }//GEN-LAST:event_tblSobeMouseClicked
 
     private void btnAzurirajSobuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAzurirajSobuActionPerformed
-        /* if (tblSobe.getSelectedRow() == -1) {
+        if (tblSobe.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Niste odabrali sobu koju želite ažurirati!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -324,32 +328,42 @@ public class SobeView extends javax.swing.JDialog {
             int n = JOptionPane.showOptionDialog(null, "Želite li ažurirati sobu?", "Potvrda ažuriranja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
             if (n == 0) {
                 int red = tblSobe.getSelectedRow();
-                int brojSobe = Integer.parseInt(tblSobe.getValueAt(red, 0).toString());
-                String naziv = txtNoviBrojSobe.getText();
+                int sifraSobe = Integer.parseInt(tblSobe.getValueAt(red, 0).toString());
+                String brojSobe = txtNoviBrojSobe.getText();
                 Double cijena = Double.parseDouble(txtNovaCijenaSobe.getText());
                 String opisTipaSobe = (String) cmbNoviTipSobe.getSelectedItem();
-                TipSobe tipSobe = controll.dohvatiTipSobeID(opisTipaSobe);
-                
-                Usluga usluga = new Usluga();
-                usluga.setSifra(sifra);
-                usluga.setNaziv(naziv);
-                usluga.setCijena(cijena);
-                usluga.setKategorija(kategorija);
-                usluga.setOpis(opis);
+                TipSobe tipSobe = controll.dohvatiTipSobe(opisTipaSobe);
+                boolean ljubimci = chNovoLjubimci.isSelected();
+                boolean pusenje = chNovoPusenje.isSelected();
+                boolean rezervirana = chNovoRezervirana.isSelected();
 
-                String potvrda = controllA.azurirajUslugu(usluga);
+                Soba soba = new Soba();
+                soba.setSifra_sobe(sifraSobe);
+                soba.setBroj_sobe(brojSobe);
+                soba.setCijena(cijena);
+                soba.setSifra_tipa(tipSobe);
+                soba.setDozvoljeni_ljubimci(ljubimci);
+                soba.setDozvoljeno_pusenje(pusenje);
+                soba.setRezervirana(rezervirana);
+
+                String potvrda = controll.azurirajSobu(soba);
                 JOptionPane.showMessageDialog(this, potvrda);
 
-                txtNoviNaziv.setText("");
-                txtNovaCijena.setText("");
-                txtNoviOpis.setText("");
-
-                prikaziUsluge();
+                txtNoviBrojSobe.setText("");
+                txtNovaCijenaSobe.setText("");
+                chNovoLjubimci.setSelected(false);
+                chNovoPusenje.setSelected(false);
+                chNovoRezervirana.setSelected(false);
+                prikaziSobe();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Niste unesli sve podatke!", "Greška!", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_btnAzurirajSobuActionPerformed
+
+    private void btnOdustaniSobaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniSobaActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnOdustaniSobaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,11 +435,11 @@ public class SobeView extends javax.swing.JDialog {
     private javax.swing.JTextField txtNoviBrojSobe;
     // End of variables declaration//GEN-END:variables
 
-    private void prikaziUsluge() {
+    private void prikaziSobe() {
         ((DefaultTableModel) tblSobe.getModel()).setNumRows(0);
         List<Soba> lista = controll.dohvatiSobe();
         for (Soba soba : lista) {
-            Object[] rowData = {soba.getBroj_sobe(), soba.getSifra_tipa().getSifra_tipa_sobe(), soba.isDozvoljeno_pusenje(), soba.isDozvoljeni_ljubimci(), soba.isRezervirana(), soba.getCijena()};
+            Object[] rowData = {soba.getSifra_sobe(), soba.getBroj_sobe(), soba.getSifra_tipa().getSifra_tipa_sobe(), soba.isDozvoljeno_pusenje(), soba.isDozvoljeni_ljubimci(), soba.isRezervirana(), soba.getCijena()};
             ((DefaultTableModel) tblSobe.getModel()).addRow(rowData);
         }
     }

@@ -132,14 +132,14 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chNovoLjubimci" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNoviBrojSobe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chNovoPusenje" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chNovoPusenje" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNovaCijenaSobe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chNovoLjubimci" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -173,6 +173,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Odustani"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOdustaniSobaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -234,7 +237,7 @@
         <Component class="javax.swing.JTable" name="tblSobe">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;            new Object [][] {&#xa;                &#xa;            },&#xa;            new String [] {&#xa;                &quot;Broj sobe&quot;,&quot;Tip sobe&quot;,&quot;Pu&#x161;enje&quot;,&quot;Ljubimci&quot;, &quot;Rezervirana&quot;,&quot;Cijena&quot;&#xa;            }&#xa;        )" type="code"/>
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;            new Object [][] {&#xa;                &#xa;            },&#xa;            new String [] {&#xa;                &quot;&#x160;ifra&quot;,&quot;Broj sobe&quot;,&quot;Tip sobe&quot;,&quot;Pu&#x161;enje&quot;,&quot;Ljubimci&quot;, &quot;Rezervirana&quot;,&quot;Cijena&quot;&#xa;            }&#xa;        )" type="code"/>
             </Property>
           </Properties>
           <Events>

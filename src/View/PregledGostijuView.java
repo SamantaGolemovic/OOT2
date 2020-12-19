@@ -5,6 +5,11 @@
  */
 package View;
 
+import Controller.ControllAdmin;
+import Model.Gost;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author veron
@@ -54,16 +59,18 @@ public class PregledGostijuView extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnPrikaziSveGoste.setText("Prikaži sve");
+        btnPrikaziSveGoste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrikaziSveGosteActionPerformed(evt);
+            }
+        });
 
         tblGosti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sifra","Ime", "Prezime", "OIB", "Kontakt"
             }
         ));
         jScrollPane1.setViewportView(tblGosti);
@@ -91,6 +98,11 @@ public class PregledGostijuView extends javax.swing.JDialog {
         jLabel4.setText("Prezime:");
 
         btnPretražiGoste.setText("Pretraži");
+        btnPretražiGoste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPretražiGosteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,6 +201,14 @@ public class PregledGostijuView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPretražiGosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretražiGosteActionPerformed
+        prikaziGoste();
+    }//GEN-LAST:event_btnPretražiGosteActionPerformed
+
+    private void btnPrikaziSveGosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziSveGosteActionPerformed
+        prikaziGoste();
+    }//GEN-LAST:event_btnPrikaziSveGosteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,4 +274,17 @@ public class PregledGostijuView extends javax.swing.JDialog {
     private javax.swing.JTextField txtTraziIme;
     private javax.swing.JTextField txtTraziPrezime;
     // End of variables declaration//GEN-END:variables
+
+private void prikaziGoste(){
+        ((DefaultTableModel)tblGosti.getModel()).setNumRows(0);
+        List<Gost> lista = controll.dohvatiGoste();
+        for (Gost gost : lista){
+            Object[] rowData = {gost.getSifra_gosta(),gost.getIme_gosta(),gost.getPrezime_gosta(),
+            gost.getOib_gosta(),gost.getBr_mobitela()};
+            ((DefaultTableModel)tblGosti.getModel()).addRow(rowData);
+        }
+    }
+
+    ControllAdmin controll = new ControllAdmin();
+
 }

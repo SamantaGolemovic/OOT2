@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import Model.Gost;
 import Model.Soba;
 import Model.TipSobe;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
@@ -250,4 +251,129 @@ public class DBAdmin {
         return null;
     }
 
+    public static TipSobe getTipSobe(String nazivTipaSobe) {
+        try {
+            TipSobe tipSobe = new TipSobe();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/sgolemovic", "sgolemovic", "11");
+            Statement stmt = conn.createStatement();
+
+            String sql = "SELECT * FROM Tip_sobe where opis_tipa_sobe='" + nazivTipaSobe + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                int sifra = rs.getInt(1);
+
+                tipSobe.setSifra_tipa_sobe(sifra);
+                tipSobe.setOpis_tipa_sobe(nazivTipaSobe);
+
+            }
+
+            return tipSobe;
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public static boolean azuriranjeSobe(Soba soba) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr:3306/sgolemovic", "sgolemovic", "11");
+            int sifraSobe = soba.getSifra_sobe();
+            String brojSobe = soba.getBroj_sobe();
+            Double cijena = soba.getCijena();
+            int tipSobe = soba.getSifra_tipa().getSifra_tipa_sobe();
+            boolean ljubimci = soba.isDozvoljeni_ljubimci();
+            boolean pusenje = soba.isDozvoljeno_pusenje();
+            boolean rezervirana = soba.isRezervirana();
+
+            int pusenje2 = 0, ljubimci2 = 0, rezervirana2 = 0;
+
+            if (pusenje == true) {
+                pusenje2 = 1;
+            } else if (pusenje != true) {
+                pusenje2 = 0;
+            }
+            if (ljubimci == true) {
+                ljubimci2 = 1;
+            } else if (ljubimci != true) {
+                ljubimci2 = 0;
+            }
+            if (rezervirana == true) {
+                rezervirana2 = 1;
+            } else if (rezervirana != true) {
+                rezervirana2 = 0;
+            }
+
+            String sql = "Update Soba SET broj_sobe=" + brojSobe + ", cijena_sobe=" + cijena + ",sifra_tipa="
+                    + tipSobe + ", rezervirana=" + rezervirana2 + ", pusenje=" + pusenje2 + ", ljubimci="
+                    + ljubimci2 + " where sifra_sobe=" + sifraSobe + ";";
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+
+            conn.close();
+
+            return true;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public static List getListaGostiju() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr:3306/sgolemovic", "sgolemovic", "11");
+            List lista = new ArrayList<Gost>();
+            Statement stmt = conn.createStatement();
+            Statement stmt2 = conn.createStatement();
+            String sql = "SELECT * FROM Gost";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                int sifra = rs.getInt(1);
+                String ime = rs.getString(2);
+                String prezime = rs.getString(3);
+                String brMoba = rs.getString(4);
+                String OIB = rs.getString(5);
+
+                Gost gost = new Gost();
+                gost.setSifra_gosta(sifra);
+                gost.setIme_gosta(ime);
+                gost.setPrezime_gosta(prezime);
+                gost.setBr_mobitela(brMoba);
+                gost.setOib_gosta(OIB);
+
+                lista.add(gost);
+
+            }
+            return lista;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
 }
